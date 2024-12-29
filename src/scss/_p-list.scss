@@ -5,12 +5,6 @@
     @include grid12(4,4,4);
     row-gap: 4rem;
 
-    .widget-type_linii_pl_header + .widget-type_linii_p_list & {
-
-        margin-top: 0;
-
-    }
-
     @media (max-width: max-width(m)) {
         
         & .p-card {
