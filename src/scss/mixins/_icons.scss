@@ -1,0 +1,50 @@
+@mixin icon( $name, $w: auto, $h: auto ) {
+    &::before {
+        content: url(#{ icon-url($name) });
+        width: $w;
+        height: $h;
+        display: block;
+    }
+}
+
+@function icon-url( $name ) {
+   @return asset_url( '#{$name}.svg' );
+}
+
+@mixin icon-x( $color, $w, $stroke-w ) {
+
+	$stroke-len: floor( math.div( $w, 0.7 ) ); // 0.7 ~ 1/sqrt(2)
+
+	width: $w;
+	height: $w;
+	position: relative;
+	
+	&::before,
+	&::after {
+		content: '';
+
+		background: $color;
+
+		height: $stroke-len;
+		width: $stroke-w;
+
+		left: 50%;
+		top: 50%;
+
+		position: absolute;
+		transform-origin: center;
+	}
+
+	&::before {
+		transform: translate(-50%, -50%) rotate(-45deg);
+	}
+
+	&::after {
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+
+}
+
+@function asset_url( $file ) {
+    @return '/media/' + $file;
+}

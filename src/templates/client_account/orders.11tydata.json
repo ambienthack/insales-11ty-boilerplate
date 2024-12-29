@@ -1,0 +1,6 @@
+{
+    "title": "История заказов",
+    "layout": "layouts.client_account.liquid",
+    "account_active_item": "orders",
+    "template": "account.orders2"
+}

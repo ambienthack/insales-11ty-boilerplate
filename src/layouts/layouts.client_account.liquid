@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html
+  class="{{ default_checkout2_layout_class }}"
+  style="
+    {% include "system_v4_required_styles" %}
+  "
+>
+  <head>
+    {% include "head" %}
+    {% if devmode %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    {% endif %}
+  </head>
+  <body data-layout="client" class="adaptive page page--{{ template | replace: ".", "_"  }}" data-multi-lang="{{ language.not_default? }}">
+    {% include "system_no_js_alert" %}
+    <div class="page_layout page_layout-clear">
+      <header>
+        {% for widgetDrop in widget_lists.header-list.widgets %}
+        {% widget widgetDrop %}
+        {% endfor %}
+      </header>
+      <main>
+        <div class="layout">
+          <div class="layout__content">
+            <!--
+            {% if template != "order2" %}
+              <hgroup class="page-title">
+                <div class="page-title__title">Личный кабинет</div>
+              </hgroup>
+            {% endif %}
+            -->
+            <div class='checkout-v2-wrapper co-section--content_wrapper'>
+              {% if client and template != "order2" %}
+                <div class="co-account-sidebar">
+                  <div class="co-userdata">
+                    <div class="co-userdata__title">{{client.name}} {{client.surname}}</div>
+                    <div>{{client.email}}</div>
+                  </div>
+                  {% if devmode %}
+                    {% include 'account-menu' %} 
+                  {% else %}
+                    {% yield 'menu' %}
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class='co-section--content'>
+                <div class='co-section--checkout_header co-checkout-block--padded'>
+                  <h1 class='co-checkout-title co-title co-title--h1'>
+                    {% if devmode %}
+                      {{ title }}
+                    {% else %}
+                      {% yield 'title' %}
+                    {% endif %}
+                  </h1>
+                </div>
+                {% if devmode %}
+                  <!--div class="co-notice--success co-notice--flash">Адрес доставки сохранен</div>
+                  <div class="co-notice--success co-notice--flash">Спасибо за заказ!</div-->
+                  <div class="co-notice--success co-notice--flash">Заказ успешно оформлен. В течение нескольких секунд вы будете перенаправлены на страницу оплаты.</div>
+
+                  {{ content }}
+                {% else %}
+                  {% yield %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        {% for widgetDrop in widget_lists.footer-list.widgets %}
+        {% widget widgetDrop %}
+        {% endfor %}
+      </footer>
+    </div>
+    <div class="outside-widgets">
+      {% for widgetDrop in widget_lists.outside-list.widgets %}
+        {% widget widgetDrop %}
+      {% endfor %}
+    </div>
+  </body>
+  {{ 'checkout2.core' | global_stylesheet_tag }}
+
+  {%- capture css_js_lists -%}header-list, footer-list, sidebar-list, outside-list, {{ template }}-list, {{ template }}-section_top-list, {{ template }}-section_bottom-list{%- endcapture -%}
+
+  {% if sidebar_show %}
+    {% if template contains 'blog' or template contains 'article' %}
+        {% assign css_js_lists = css_js_lists | append: ', sidebar_blog-list' %}
+    {% else %}
+        {% assign css_js_lists = css_js_lists | append: ', sidebar-list' %}
+    {% endif %}
+  {% endif %}
+
+  {% widgets_assets css_js_lists %}
+
+  {% include "styles" %}
+  {% if devmode %}
+    {%  comment  %}  
+    {% include "system_mock_micro_alert" %} 
+    {% endcomment %} 
+    <script type="module" src="/ts/theme.ts" charset="utf-8"></script>
+  {% else %}
+    <script src="{{ 'theme.js' | asset_url }}" charset="utf-8"></script>
+  {% endif %}
+
+</html>
+

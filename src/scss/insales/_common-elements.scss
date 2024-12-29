@@ -1,0 +1,101 @@
+a:not([class]):focus, .picker-input--active:not([class]), a:not([class]):hover, .link:focus, .link.picker-input--active, .link:hover, .co-link:focus, .co-link.picker-input--active, .co-link:hover  {
+    @include link-hover;    
+}
+
+.co-price {
+    font: inherit;   
+    
+    &--current {
+        font: inherit;
+    }
+}
+
+.co-checkout-title {
+    margin: 2.4rem 0 3rem;
+
+    .co-title {
+        margin: 0;
+    }
+}
+
+.co-title--h1 {
+    @include h1;
+    margin-bottom: 3rem;
+}
+
+.co-title--h2 {
+    font-size: 1.8rem;
+    font-weight: $fw-medium;
+
+    margin-bottom: 2rem;
+
+    @media (max-width: max-width(s)) {
+        font-size: 1.5rem;
+    }
+}
+
+.co-form-button {
+    margin: 0;
+
+
+    @media (max-width: max-width(s)) {
+        width: 100%;
+    }
+    
+}
+
+.co-pagination {
+
+    @extend .p-paginate;
+
+    &_link {
+        @extend .p-paginate__item;
+    }
+
+    &_button {
+        @extend .p-paginate__label;
+
+        &__inactive:hover {
+            background: inherit; 
+            @include link-hover;
+        }
+
+        &__active {
+            @extend .p-paginate__label--active;
+        }
+    }
+
+    &_link:last-child &_button_handle {
+
+        &::before {
+            visibility: visible;
+            content: "ДАЛЬШЕ →";
+        }
+
+    }
+
+    &_link:first-child &_button_handle {
+        &::before {
+            visibility: visible;
+            content: "← НАЗАД";
+        }
+    }
+
+    &_button_handle {
+        @extend .p-paginate__btn;
+
+        visibility: hidden;
+        width: auto;
+
+        &:hover {
+            @include link-hover;
+        }
+
+    }
+
+}
+
+.consent_to_personal_data_checkbox {
+    padding-left: 1rem;
+    margin-top: 5rem;
+}

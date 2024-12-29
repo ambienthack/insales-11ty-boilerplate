@@ -1,0 +1,57 @@
+@use "sass:math";
+
+.p-slider { 
+
+    @include slider(4);
+
+    & {
+        --title-f-size: 2rem;
+        --more-f-size: 1.4rem;
+        --slide-footer-h: 7rem;
+    
+        --mrgn-t: 10rem;
+        --mrgn-b: 10rem;
+    
+        margin-top: var( --mrgn-t );
+        margin-bottom: var( --mrgn-b );
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        line-height: 2rem;
+
+        margin-bottom: 3.2rem;
+    }
+
+    &__title {
+        @extend %reset-offsets;
+        font-weight: $fw-medium;
+        font-size: var( --title-f-size );
+    }
+
+    &__more-btn {
+        font-size: var(  --more-f-size );
+        position: relative;
+        top: 2px;
+    }
+
+    @media (max-width: max-width(m)) {
+        --title-f-size: 1.8rem;
+        --more-f-size: 1.2rem;
+    }
+ 
+    @media (max-width: max-width(s)) {
+        --title-f-size: 1.6rem; 
+
+        --mrgn-t: 6rem;
+        --mrgn-b: 6rem;
+
+        &__more-btn {
+            display: none;
+        }
+        
+
+    }
+
+}

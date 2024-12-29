@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html
+  class="{% if devmode %}devmode{% endif %}"
+  style="
+    {% include "system_v4_required_styles" %}
+  "
+  >
+  <head>
+    {% include "head" %}
+    {% if devmode %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    {% endif %}
+  </head>
+  <body data-multi-lang="{{ language.not_default? }}">
+    {% include "system_no_js_alert" %}
+    <div class="page_layout page_layout-clear {% if template contains 'collection' %}page_layout_section_top{% endif %}">
+      <header>
+      {% for widgetDrop in widget_lists.header-list.widgets %}
+        {% widget widgetDrop %}
+      {% endfor %}
+      </header>
+
+      {% if template contains 'collection' %}
+      {% assign collection_size = settings.collection_count | default: "12" %}
+      {% paginate products by collection_size %}
+        <section class="page_section_top">
+          {% for widgetDrop in widget_lists.collection-section_top-list.widgets %}
+                {% widget widgetDrop %}
+          {% endfor %}
+        </section>
+      {% endpaginate %}
+      {% endif %}
+
+      <main>
+        {% if devmode %}
+          {{ content }} 
+        {% else %}
+          {{ content_for_layout }} 
+        {% endif %}
+      </main>
+
+      <footer>
+        {% for widgetDrop in widget_lists.footer-list.widgets %}
+          {% widget widgetDrop %}
+        {% endfor %}
+      </footer>
+    </div>
+    <div class="outside-widgets">
+      {% for widgetDrop in widget_lists.outside-list.widgets %}
+        {% widget widgetDrop %}
+      {% endfor %}
+    </div>
+
+
+  {%- capture css_js_lists -%}header-list, footer-list, outside-list, {{ template }}-list, {{ template }}-section_top-list, {{ template }}-section_bottom-list{%- endcapture -%}
+  {% widgets_assets css_js_lists %}
+
+  {% include "styles" %}
+
+  {% if devmode %}
+    {%  comment  %}  
+    {% include "system_mock_micro_alert" %} 
+    {% endcomment %}  
+    <script type="module" src="/ts/theme.ts" charset="utf-8"></script>
+  {% else %}
+    <script src="{{ 'theme.js' | asset_url }}" charset="utf-8"></script>
+  {% endif %}
+
+  {% if devmode %}
+    {% include "system_mock_quick_co_modal" %}
+  {% endif %}
+
+  </body>
+</html>

@@ -1,0 +1,42 @@
+:root {
+    --bg: #{ $c-back };
+
+    --font-family: #{ $ff };
+    --font-family-heading: #{ $ff };
+    --font-weight: #{ $fw-normal };
+
+    --breadcrumb-color: #{ $c-text };
+    --layout-content-max-width: none;
+    --layout-side-padding: var( --content-pad-w );
+    --layout-side-padding-mobile: var( --content-pad-w );
+
+    --color-btn-bg: #{ $c-bw10 };
+    --color-btn-color: #{ $c-back };
+    
+    --color-btn-bg-minor-shade: #{ $c-bw8 }; //button hover
+    --color-btn-shadow-hover: none;
+    --controls-btn-padding-x: 2.6rem;
+
+    --controls-height-s: var( --input-h );
+    --controls-height-m: var( --input-h );
+    --controls-height-l: var( --input-h );
+    --controls-height-xl: var( --input-h );
+
+    --controls-font-size-m: var( --input-f-size );
+    --controls-font-size-l: var( --btn-f-size );
+    --controls-border-width: 0.1rem;
+    --controls-btn-border-radius: var( --input-border-r );
+
+    --color-form-controls-color: #{ $c-text };
+    --color-form-controls-border-color: #{$c-bw3};
+    --color-form-controls-border-color-focus: #{ $c-bw6 }; //#{ $c-bw3 };
+    --color-form-controls-shadow-focus: none;
+    --color-form-controls-bg: var( --bg );
+
+    
+
+    --color-notice-info: #{ $c-bw6 };
+    --color-notice-success: #{ $c-bw6 };
+    --color-notice-warning: #{ $c-bw6 };
+    --color-notice-error: #{ $c-red12 };
+}

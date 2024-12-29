@@ -1,0 +1,75 @@
+{
+    "enable_coupon?": true,
+    "items_count": 3,
+    "items": [
+        {
+            "id": 1,
+            "title": "Свитер из итальянского кашемира",
+            "sale_price": "23 300",
+            "quantity": 1,
+            "product": {
+                "id": 1,
+                "url": "#",
+                "title": "Свитер из итальянского кашемира",
+                "properties": [
+
+                ]
+            },
+            "variant": {
+                "id": 1,
+                "sku": "19735JK",
+                "title": "черный / S",
+                "old_price": "23 300",
+                "first_image": {
+                    "large_url": "/uploads/prod-1.jpg"
+                }
+            }
+        },
+        {
+            "id": 1,
+            "title": "Свитер шерстяной без швов",
+            "sale_price": "17 700",
+            "quantity": 1,
+            "product": {
+                "id": 1,
+                "url": "#",
+                "title": "Свитер шерстяной без швов",
+                "properties": [
+
+                ]
+            },
+            "variant": {
+                "id": 1,
+                "sku": "19735JK",
+                "title": "желтый / S",
+                "old_price": "23 300",
+                "first_image": {
+                    "large_url": "/uploads/prod2-1.jpg"
+                }
+            }
+        },
+        {
+            "id": 1,
+            "title": "Плащ",
+            "sale_price": "25 500",
+            "quantity": 1,
+            "product": {
+                "id": 1,
+                "url": "#",
+                "title": "Плащ",
+                "properties": [
+
+                ]
+            },
+            "variant": {
+                "id": 1,
+                "sku": "19735JK",
+                "title": "бежевый / S",
+                "old_price": "25 500",
+                "first_image": {
+                    "large_url": "/uploads/prod3-1.jpg"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+
+
+.co-table-row--striped:nth-child(even) {
+    background: transparent;
+}
+
+@mixin co-table-ui( $row-sel, $cell-sel, $light-row-offset: 0 ) {
+    $row-h: var( --t-row-h );
+
+    @include -x-pad-h( "--t-cell-pad-h", $row-h, var( --td-f-size ), var( --line-h ) );
+
+    --t-row-h: 4rem;
+    --t-cell-pad: var(--t-cell-pad-h) 0.5em;
+
+    & {
+        border: none;
+
+        margin: 0 var( ---block-pad-w );
+        min-width: calc(100% + var( --block-pad-w ) * 2);
+    }
+
+    #{$cell-sel} {
+        --border-r: 0;
+
+        font: inherit;
+        border: none;
+        
+        padding: var( --t-cell-pad );
+
+        position: relative;
+        z-index: 1;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var( --row-bg-color );
+            border-radius: var( --border-r );
+        } 
+
+        &:first-child{
+            --border-r: #{$row-h 0 0 $row-h};
+            padding-left: 2rem;
+        }
+
+        &:last-child {
+            --border-r: #{0 $row-h $row-h 0};
+            padding-right: 2rem;  
+        }
+
+        &:first-child:last-child {
+            --border-r: #{$row-h};
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    #{$row-sel} {
+        --row-bg-color: transparent;
+
+        position: relative;
+        z-index: 1;
+
+        &:nth-child(2n+#{$light-row-offset}){
+            --row-bg-color: #{ $c-bw2 };
+        } 
+    }
+}
+
+@mixin co-table-typo() {
+    --td-f-size: 1.2rem;
+    --th-f-size: 1.2rem;
+    --line-h: 1.2;
+
+    font-size: var( --td-f-size );
+    line-height: var( --line-h );
+
+    @media (max-width: max-width(xxs)) {
+        --table-f-size: 1rem;
+    }
+}
+
+.co-table {
+    @include co-table-typo();
+    @include co-table-ui( "tr", "td, th" );
+    
+    & {
+        text-align: center;
+    }
+    
+    .co-table-cell--head,
+    th {
+        opacity: 1;
+        color: inherit;
+        font-size: var( --th-f-size );
+    }
+  
+    @media (max-width: max-width(xxs)) {
+
+        &--to_card &-row {
+            border-top: none;
+            display: table-row;
+        }
+
+        &--to_card &-cell,
+        &--to_card &-cell--body {
+            padding: var( --t-cell-pad );
+
+            margin: 0;
+            display: table-cell;
+
+            &::before {
+                content: "";
+            }
+                
+            &.co-table-cell--hide\@xs {
+                display: unset !important;
+            }
+
+            &.co-table-cell--hide\@sm {
+                display: none !important;
+            }
+        }
+
+ 
+        
+    }
+
+}

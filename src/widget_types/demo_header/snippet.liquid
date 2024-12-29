@@ -1,0 +1,89 @@
+{% assign search_url = "/templates/search-not-found/" %}
+{% assign favs_url = "#" %}
+{% assign account_url = "/templates/client_account/orders/" %}
+
+{% assign looks_url = "/templates/stories/" %}
+{% assign stories_url = "/templates/stories/" %}
+ 
+<div class="header">
+    <div class="header__main">
+        <div class="header__bar">
+            <a class="header__logo" href="{{ home_url }}" title="На главную">
+                <img src="{{ "logo--h.svg" | asset_url }}">
+            </a>
+
+            <div class="header__menu-btn">
+                <button class="menu-btn" aria-haspopup="menu"><i></i></button>
+            </div>
+
+            <nav class="header__menu h-menu" aria-label="Главное меню" role="menu">
+                <a class="h-menu__logo" href="{{ home_url }}" title="На главную">
+                    <img src="{{ "logo--h.svg" | asset_url }}">
+                </a>
+
+                <ul class="h-menu__list h-menu__list--root h-menu__list--main">
+                    <li class="h-menu__item h-menu__item--w-submenu">
+                            <span class="h-menu__submenu-toggle"><a class="h-menu__all-link" href="#">ОДЕЖДА</a> <i class="i i-submenu-tick"></i></span>
+                            <div class="h-menu__submenu h-submenu">
+                                <div class="h-submenu__header">
+                                    <i class="h-submenu__back-btn i i-back-tick"></i>
+                                    <span class="h-submenu__title">ОДЕЖДА</span>
+                                </div>
+                                <ul class="h-menu__list">
+                                    {% for link in linklists["categories"].links %}
+                                        <li class="h-menu__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                    {% endfor %}
+                                    <li class="h-menu__item h-menu__item--all" ><a href="#">Смотреть все</a></li>
+                                </ul>
+                            </div>
+                    </li> 
+                    <li class="h-menu__item">
+                        <a href="{{ looks_url }}">ОБРАЗЫ</a>
+                    </li> 
+                    <li class="h-menu__item">
+                        <a href="{{ stories_url }}">ИСТОРИИ</a>
+                    </li> 
+                </ul>
+
+                <ul class="h-menu__list h-menu__list--root h-menu__list--system">
+                    <li class="h-menu__item h-menu__item--w-submenu">
+                        <span class="h-menu__submenu-toggle"><a href="{{ search_url }}">ПОИСК</a> <i class="i i-submenu-tick"></i></span>
+                        <div class="h-menu__submenu h-submenu">
+                            <div class="h-submenu__header">
+                                <i class="i i-back-tick"></i>
+                                <span>ПОИСК</span>
+                            </div>
+                            <form class="h-search" action="{{ search_url }}">
+                                <div class="h-search__search-box f-item">    
+                                    <div class="f-item__input input-group input-group--btn">
+                                        <input placeholder="Введите запрос" type="text"><button class="btn btn--primary" type="submit" >ИСКАТЬ</button>
+                                    </div>
+                                </div>
+                                <nav class="h-search__quick-btns">
+                                    <a href="#" class="h-search__quick-btn btn btn--outline">Платья</a>
+                                    <a href="#" class="h-search__quick-btn btn btn--outline">Брюки</a>
+                                    <a href="#" class="h-search__quick-btn btn btn--outline">Майки</a>
+                                    <a href="#" class="h-search__quick-btn btn btn--outline">Платья</a>
+                                    <a href="#" class="h-search__quick-btn btn btn--outline">Брюки</a>
+                                </nav>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="h-menu__item">
+                        <a href="{{ favs_url }}">ИЗБРАННОЕ</a>
+                    </li> 
+                    <li class="h-menu__item">
+                        <a href="{{ account_url }}">АККАУНТ</a>
+                    </li> 
+                    <li class="h-menu__item">
+                        <a class="header__cart-btn" href="{{ cart_url }}">КОРЗИНА [<span data-cart-positions-count>{{ cart.items_count }}</span>]</a>
+                    </li> 
+                </ul>
+            </nav>
+        
+            <nav class="header__shopnav">
+                <a class="header__cart-btn" href="{{ cart_url }}">КОРЗИНА [<span data-cart-positions-count>{{ cart.items_count }}</span>]</a>
+            </nav>
+        </div>
+    </div>
+</div>

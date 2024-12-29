@@ -1,0 +1,29 @@
+@use 'sass:math';
+
+
+@function line-h( $l-height, $f-size, $precision: 2 ) {
+
+	$result: math.div( $l-height , $f-size );
+	@return round( $result, $precision );
+
+}
+
+@function pad-h( $h, $f-size, $l-height: 1 ) {
+	@return  $h * 0.5 - $f-size * $l-height * 0.5;
+}
+
+@mixin -pad-h( $h, $f-size, $l-height ) {
+	--pad-h: calc( #{ $h }/2 - #{ $f-size }*#{ $l-height }/2 );
+}
+
+@mixin -x-pad-h( $var, $h, $f-size, $l-height ) {
+	#{$var}: calc( #{ $h }/2 - #{ $f-size }*#{ $l-height }/2 );
+}
+
+@mixin link-hover {
+	color: var( --c-text--hover );
+}
+
+@mixin border-hover {
+	border-color: currentColor;
+}

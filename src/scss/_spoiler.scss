@@ -1,0 +1,46 @@
+.spoiler {
+
+    @include spoiler();
+
+    --hover-bg-display: block;
+    --header-f-size: 1.5rem;
+    --hoverbox-mrgn-w: 2rem;
+    --mrgn-b: 2.8rem;
+
+    margin: 0 var( --hoverbox-mrgn-w ) var( --mrgn-b );    
+
+    &__header {
+        font-size: var( --header-f-size );
+        font-weight: $fw-medium;
+        color: inherit;
+    }
+
+    @media (min-width: min-width(s)) {
+        &__header {
+
+            i {
+                border-color: transparent;
+            }
+
+        }
+    }
+
+    @media (max-width: max-width(m)) {
+        --header-f-size: 1.3rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        
+        --hoverbox-mrgn-w: 0;
+        --hover-bg-display: none;
+   
+
+        --mrgn-b: 0.5rem;
+
+        &__header:hover {
+            @include link-hover;
+        }
+
+    }
+    
+}

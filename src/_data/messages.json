@@ -1,0 +1,18 @@
+{
+    "cart_is_empty": "Ваша корзина пуста",
+    "checkout": "Оформить заказ",
+    "total_caption": "Итого",
+
+
+    "sorting": "Сортировка",
+    "default": "По умолчанию",
+    "sort_by_price": "По возрастанию цены",
+    "sort_by_price_desc": "По убыванию цены",
+    "sort_by_createdon": "По новизне",
+
+    "from_upper": "от",
+
+    "not_available": "Нет в наличии",
+    "pre_order": "Предзаказ",
+    "btn_buy_text": "В корзину"
+}

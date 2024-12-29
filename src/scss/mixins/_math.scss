@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "sass:math";
+
+
+@function px2pct( $base-size, $px ) {
+
+	$screen-size: bpoint( $base-size );
+	@return math.div($px,$screen-size) * 100%;
+
+}
+
+@function px2vw( $base-size, $px ) {
+ 
+	$screen-size: bpoint( $base-size );	
+	@return math.div($px,$screen-size) * 100vw;
+
+} 
+
+@function px2rem( $px, $rem-base: 10px ) {
+	@return math.div( $px, $rem-base ) * 1rem;
+}
+
+@function rem2vw( $base-size, $rem ) {
+ 
+	$screen-size: bpoint( $base-size );	
+	@return math.div( $rem * 10px , $screen-size * 1rem ) * 100vw;
+
+} 
+
+@function rem2em( $rem, $f-size ) {
+	@return math.div( $rem, $f-size ) * 1em;
+}
+
+@function min-width($name) {
+	@return map.get($bpoints, $name) + 1px;
+}
+
+@function max-width($name) {
+	@return map.get($bpoints, $name);
+}
+
+@function div( $a, $b ) {
+	@return math.div( $a, $b );
+}
+
+/**
+
+round(0.1234) => 0.12
+round(0.1234, 2) => 0.12
+round(1234.5678, -2) => 1200
+round(1234.5678, 0) => 1234
+
+*/
+@function round( $value, $precision: 2 ) {
+
+	$factor: math.pow( 10, $precision );
+	@return math.div( math.round( $value * $factor ) , $factor );
+
+}

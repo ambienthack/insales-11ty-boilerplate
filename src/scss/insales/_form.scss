@@ -1,0 +1,157 @@
+.m-input,
+.co-input {
+
+    @include f-item("&-label:not(.co-title)", "&-field");
+
+    &-label:not(.co-title) {
+        margin: 0;
+    }
+
+    &-field {
+        @include input-typo();
+        margin: 0;
+        padding: 0 2.5rem;
+        border: var(--controls-border-width) solid var( --input-border-c );
+    }
+
+    &-notice {
+        text-align: left;
+        color: $c-red17;
+        font-size: var( --label-f-size );
+        font-weight: $fw-medium;
+        padding: 0 2.5rem;
+    }
+
+    &--error {
+        --label-c: var( --input-border-c--error );
+        --input-border-c: var( --input-border-c--error );
+        --color-form-controls-border-color-focus: var( --input-border-c--error );
+    }
+    
+
+}
+
+.co-input + .co-input, .co-tabs-content + .co-input {
+    margin-top: 2rem;
+}
+
+.co-form-controls {
+    padding-top: 4rem;
+}
+
+.m-modal-button,
+.co-button:not(.co-button--link) {
+    text-transform: uppercase;
+    font-weight: var( --btn-f-weight );
+    font-size: var( --btn-f-size );
+}
+
+.co-button--small:not(.co-button--link) {
+    font: inherit;
+    text-transform: none;
+    display: inline;
+    border: none;
+    padding: 0.3em 0.7em;
+    white-space: nowrap !important; 
+}
+
+//checkbox
+
+@mixin insales-checkbox( $prefix, $label-sel, $check-sel, $check--checked-sel ) {
+
+    font-size: 1.2rem;
+    line-height: 1.4;
+
+    .#{$prefix}-input + & {
+        margin-top: 3rem;
+    }
+
+    .#{$prefix}-input-label {
+        position: static;
+        padding: 0;
+    }
+
+    @include checkbox( $label-sel, $check-sel, $check--checked-sel );
+
+    .#{$prefix}-toggable_field-information {
+        padding: 0;
+    }
+
+    .#{$prefix}-toggable_field-information,
+    .#{$prefix}-input-label,
+    .#{$prefix}-input-description,
+    .#{$prefix}-input-title {
+        font: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
+
+    .#{$prefix}-input-caption,
+    .#{$prefix}-input-description {
+        font-size: 1rem;
+        margin: 0;
+        color: $c-bw5;
+
+        a {
+            color: $c-text;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .#{$prefix}-input-caption {
+        margin-left: calc( 2rem + var( --input-toggle-size ))
+    }
+
+    .#{$prefix}-input-notice {
+        padding-left: 3rem;
+    }
+}
+
+.m-input--checkbox {
+    @include insales-checkbox("m", ".m-input-label", "input[type=\"checkbox\"] + span", "input[type=\"checkbox\"]:checked + span");
+
+    input[type="checkbox"] + span {
+        flex-basis: unset;
+    }
+}
+
+.co-input--checkbox {
+    @include insales-checkbox("co", ".co-toggable_field-information", ".co-toggable_field-input--checkbox input + span", ".co-toggable_field-input--checkbox input:checked + span");
+}
+
+.co-toggable_field-input input + span {
+    box-shadow: none;
+    flex: auto;
+}
+
+.co-toggable_field-input--checkbox input:checked + span {
+    &::after {
+        display: none;
+    }
+}
+
+.co-toggable_field-input input:focus + span, .co-toggable_field-input input.picker-input--active + span, .co-toggable_field-input input:checked + span {
+    box-shadow: none;
+}
+
+// radio
+
+.co-toggable_field-input--radio {
+
+    @include toggle( "input + span", "input:checked + span" );
+
+    input[type="radio"]:checked + span {
+        background-image: url( asset_url("f-radio.svg") )
+    }
+
+}
+
+.co-toggable_field--bordered {
+    padding: 0.5rem 1rem;
+}
+
+

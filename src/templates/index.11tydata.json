@@ -1,0 +1,121 @@
+{
+    "template": "index",
+    "products": [
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p1.jpg",
+            "images": [ "/uploads/coll-p1.jpg" ],
+            "title": "Широкие брюки",
+            "price": 31000,
+            "price_varies?": false,
+            "available": true,
+            "colors": [
+                "#000",
+                "#666"
+            ],
+            "properties": {
+                "label": {
+                    "characteristics": [
+                        {
+                            "handle": "",
+                            "title": "Новое"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p2.jpg",
+            "images": [ "/uploads/coll-p2.jpg"],
+            "title": "Футболка топ",
+            "price": 5000,
+            "old_price": 10000,
+            "price_varies?": false,
+            "available": false,
+            "colors": [
+                "#000"
+            ]
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p3.jpg",
+            "images": [ "/uploads/coll-p3.jpg"],
+            "title": "Рубашка пиджак",
+            "price": 23000,
+            "price_varies?": false,
+            "available": false,
+            "colors": [
+                "#000",
+                "#666",
+                "#aaa",
+                "#000"
+            ]
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p4.jpg",
+            "images": [ "/uploads/coll-p4.jpg"],
+            "title": "Пуховик бомбер",
+            "price": 42000,
+            "old_price": 45000,
+            "price_varies?": false,
+            "available": true,
+            "colors": [
+                "#000",
+                "#666",
+                "#aaa"
+            ]
+        },{
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p5.jpg",
+            "images": [ "/uploads/coll-p5.jpg" ],
+            "title": "Широкие брюки",
+            "price": 31000,
+            "available": true,
+            "colors": [
+                "#000",
+                "#666"
+            ]
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p6.jpg",
+            "images": [ "/uploads/coll-p6.jpg" ],
+            "title": "Футболка топ",
+            "price": 5000,
+            "available": true,
+            "colors": [
+                "#000"
+            ]
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p7.jpg",
+            "images": [ "/uploads/coll-p7.jpg" ],
+            "title": "Рубашка пиджак",
+            "price": 23000,
+            "available": true,
+            "colors": [
+                "#000",
+                "#666",
+                "#aaa",
+                "#000"
+            ]
+        },
+        {
+            "url": "/templates/product/",
+            "first_image": "/uploads/coll-p8.jpg",
+            "images": [ "/uploads/coll-p8.jpg" ],
+            "title": "Пуховик бомбер",
+            "price": 42000,
+            "available": true,
+            "colors": [
+                "#000",
+                "#666",
+                "#aaa"
+            ]
+        }
+
+    ]
+}

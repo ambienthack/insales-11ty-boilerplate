@@ -1,0 +1,149 @@
+%p-card-stickers {
+    --pad: 1.1rem;
+    --sticker-f-size: 1.2rem;
+
+    font-size: var( --sticker-f-size );
+    text-transform: uppercase;
+    padding: var( --pad );
+
+
+    @media (max-width: max-width(m)) {
+        --pad: 0.7rem 1.0rem;
+        --sticker-f-size: 1rem;
+
+    }
+ 
+    @media (max-width: max-width(s)) {
+        --pad: 0.6rem 0.8rem;
+        --sticker-f-size: 0.8rem;
+        letter-spacing: 0.02em;
+    }
+}
+
+.p-card {
+
+    --title-f-size: 1.4rem;
+    --fav-size: 2.2rem;
+
+    width: 100%;
+    position: relative;
+    z-index: 1;
+
+    &__header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__stickers {
+        @extend %p-card-stickers;
+    }
+
+    &__link {
+        width: 100%;
+    }
+
+    &__fav-btn {
+        @extend %no-appearance;
+        @extend %reset-offsets;
+        font-size: var( --fav-size );
+        padding: 0.8rem 0.9rem;
+
+        cursor: pointer;
+
+        &::before {
+            content: '\e100',
+        }
+
+        &.favorites-added::before {
+            content: '\e101',
+        }
+
+        &:hover {
+            @include link-hover();
+        }
+    }
+
+    &__img {
+        $h2w: math.div( 572px, 348px );
+
+        width: 100%;
+        padding-top: round( $h2w * 100% );
+        position: relative;
+
+        overflow: hidden;
+
+        background: $c-bw2;
+
+        img {
+            @include img-cover();
+        }
+    }
+
+    &__title {
+        @extend %reset-offsets;
+        font-size: var( --title-f-size );
+        font-weight: $fw-normal;
+
+        margin-top: 1rem;
+    }
+
+    &__price {
+        font-size: var( --title-f-size );
+        font-weight: $fw-normal;
+    }
+
+    &__colors {
+        margin-top: 1rem;
+    }
+
+    &--not-available {
+        color: $c-bw5;
+    }
+
+    @media (max-width: max-width(m)) {
+        --title-f-size: 1.2rem;
+        --fav-size: 1.4rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        
+    }
+
+}
+
+.price {
+
+    &__old {
+        text-decoration: line-through;
+        margin-right: 0.5em;
+        color: $c-bw5;
+    }
+
+}
+
+.p-colors {
+
+    @extend %reset-offsets;
+
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+
+    &__value {
+        $size: 1rem;
+
+        width: $size;
+        height: $size;
+        display: block;
+        background-color: var( --color );
+
+        box-shadow: inset 0 0 2px rgba( #000, 0.25 );
+    }
+
+}

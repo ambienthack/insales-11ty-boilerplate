@@ -1,0 +1,46 @@
+{
+    "categories": {
+        "links": [
+            { "id": 1, "url": "/templates/collection/", "title": "Верхняя одежда"},
+            { "id": 1, "url": "/templates/collection/", "title": "Жакеты"},
+            { "id": 1, "url": "/templates/collection/", "title": "Джемперы"},
+            { "id": 1, "url": "/templates/collection/", "title": "Рубашки и топы"},
+            { "id": 1, "url": "/templates/collection/", "title": "Футболки"},
+            { "id": 1, "url": "/templates/collection/", "title": "Брюки и юбки"},
+            { "id": 1, "url": "/templates/collection/", "title": "Платья и комбинезоны"},
+            { "id": 1, "url": "/templates/collection/", "title": "Аксессуары"}
+        ]
+    },
+    "f-nav1": {
+        "handle": "",
+        "title": "МЫ",
+        "links": [
+            { "id": 1, "url": "/templates/brand/", "title": "О бренде"},
+            { "id": 1, "url": "/templates/stories/", "title": "Истории"},
+            { "id": 1, "url": "#", "title": "Пресса"}
+        ]
+    },
+    "f-nav2": {
+        "handle": "",
+        "title": "Футер | ПОКУПАТЕЛЯМ",
+        "links": [
+            { "id": 1, "url": "#", "title": "Оплата"},
+            { "id": 1, "url": "#", "title": "Доставка и самовывоз"},
+            { "id": 1, "url": "#", "title": "Возврат"},
+            { "id": 1, "url": "/templates/faq/", "title": "Вопросы и ответы"},
+            { "id": 1, "url": "/templates/privacy/", "title": "Публичная оферта"},
+            { "id": 1, "url": "/templates/privacy/", "title": "Политика конфиденциальности "}
+        ]
+    },
+    "f-nav3": {
+        "handle": "",
+        "title": "Футер | СВЯЗАТЬСЯ С НАМИ",
+        "links": [
+            { "id": 1, "url": "#", "title": "8 800 123 45 67"},
+            { "id": 1, "url": "#", "title": "Ежедневно с 09:00 до 21:00"},
+            { "id": 1, "url": "/templates/contacts/", "title": "Контакты"},
+            { "id": 1, "url": "#", "title": "Telegram"},
+            { "id": 1, "url": "#", "title": "Вконтакте"}
+        ]
+    }
+}

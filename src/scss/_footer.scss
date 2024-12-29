@@ -1,0 +1,178 @@
+.f-logo {
+
+    --mrgn-t: 12rem;
+
+    --logo-h: 10rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: var( --mrgn-t );
+
+    img {
+        height: var( --logo-h );
+    }
+
+    @media (max-width: max-width(s)) {
+            
+        --mrgn-t: 6rem;
+        --logo-h: 4rem;
+
+    }
+
+}
+
+.footer {
+
+    --mrgn-top: 12rem;
+    --copy-pad-t: 9rem;
+
+    --mailing-max-w: 40rem;
+
+    margin-top: var( --mrgn-top );
+
+    &__main {
+        @include grid12(3,3,3,3);
+    }
+
+    &__copyright {
+        text-align: center;
+        font-size: 1.2rem;
+        color: $c-bw6;
+
+        padding: var( --copy-pad-t ) 0 1.7rem;
+    }
+
+    &__mailing {
+        grid-column: 4;
+        max-width: var( --mailing-max-w );
+    }
+
+    @media (max-width: max-width(m)) {
+        
+        --section-r-gap: 4rem; 
+
+        &__main {
+            @include grid12(6,6);
+            row-gap: var( --section-r-gap );
+        }
+
+        &__nav {
+            grid-column: 1 / span 1;
+        }
+
+        &__mailing {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 4;
+        }
+    }
+
+    @media (max-width: max-width(s)) {
+        
+        --mrgn-top: 6rem;
+        --copy-pad-t: 3rem;
+        --section-r-gap:  0.5rem;
+
+    }
+
+    @media (max-width: max-width(xs)) {
+
+        --mailing-max-w: none;
+
+        &__main {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+}
+
+%f-heading {
+    @extend %reset-offsets;
+
+    font-size: 1.2rem;
+    font-weight: $fw-normal;
+
+    color: $c-bw11;
+
+    margin-bottom: 1.6rem;
+
+    @media (max-width: max-width(s)) {
+        font-size: 1.3rem;
+    }
+}
+
+.f-nav {
+
+    --icon-display: none;
+    --row-gap: 0.6rem; 
+    --item-f-size: 1.3rem;
+
+    &__header {
+        @extend %f-heading;
+
+        i {
+            @include icon-btn();
+
+            & {
+                display: var( --icon-display );
+                order: 2;
+                font-size: 0.6rem;
+                transition: transform 0.3s;
+            }
+
+            &::before {
+                position: relative;
+                top: 1px;
+            }
+
+        }
+    }
+
+    &__content {
+        font-size: var( --item-f-size );
+        color: $c-bw7;
+
+        p {
+            margin-bottom: var( --row-gap );
+        }
+    }
+
+    &__list {
+        @extend %reset-offsets;
+        list-style: none;
+
+        display: flex;
+        flex-direction: column;
+        row-gap: var( --row-gap );
+    }
+
+    @media (max-width: max-width(m)) {
+        --item-f-size: 1.1rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        
+        @include spoiler();
+
+        & {
+            --row-gap: 1.3rem;
+            --item-f-size: 1.3rem;
+        }
+
+
+    }
+
+}
+
+.f-mailing {
+
+    &__title {
+        @extend %f-heading;
+    }
+
+    &__message {
+        font-size: 1.3rem;
+    }
+ 
+}

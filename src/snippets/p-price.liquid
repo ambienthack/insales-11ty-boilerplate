@@ -1,0 +1,11 @@
+<div class="{{ class }} price">
+    {% if product.price_varies? %}
+      <span class="price__from">{{messages.from_upper }}</span>
+      {{ product.price_min | money }}
+    {% else %}
+      {% if product.price < product.old_price %}
+        <span class="price__old">{{ product.old_price | money }}</span>
+      {% endif %}
+      {{ product.price | money }}
+    {% endif %}
+</div> 

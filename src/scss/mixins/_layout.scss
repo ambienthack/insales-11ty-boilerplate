@@ -1,0 +1,245 @@
+@use "sass:math";
+
+@mixin grid12( $colspans... ) {
+	$cols: '';
+
+	@for $i from 0 to length($colspans) {
+		$cols: $cols + nth($colspans, $i + 1) + 'fr ';
+	}
+
+	display: grid;
+    grid-template-columns: #{ $cols };
+    gap: 0 var( --grid-col-gap );
+}
+
+@mixin slider( $cols ) {
+
+	$screen-w--s: bpoint('s');
+	
+	$col-w-pct: round( math.div(100%, $cols) );
+	$col-num-inv: div(1, $cols);
+	
+    --slide-gap-w: var( --grid-col-gap );
+	--slide-w: calc( #{ $col-w-pct } - var( --slide-gap-w ) * #{ round( ($cols - 1) * $col-num-inv ) } );
+
+	//the smallest width is 4 cols on "s" screen
+	--slide-min-w: calc( #{ round( div( $screen-w--s, $cols ) ) } - var( --scrollbar-w ) * #{ round( $col-num-inv ) } - var( --content-pad-w ) * #{ round( 2 * $col-num-inv ) } - var( --slide-gap-w ) * #{ round( ($cols - 1) * $col-num-inv ) } );
+
+    &__slider {
+        width: 100%;
+        overflow: hidden;
+		position: relative;
+    }
+
+    &__slides {
+        display: flex;
+        gap: var( --slide-gap-w );
+    }
+
+	&__slider.swiper-initialized  &__slides {
+		gap: 0;
+	}
+
+    &__slide {
+        flex: 0 0 auto;
+        width: var( --slide-w );
+		min-width: var( --slide-min-w );
+    }
+
+	&__prev-btn,
+    &__next-btn {
+        @include no-appearance;
+
+		height: calc( 100% - var( --slide-footer-h, 0px ) ); 
+		width: calc( 2rem + var( --icon-btn-size) );
+		background: transparent;
+
+		position: absolute;
+		z-index: 1;
+		top: 0;
+
+		cursor: pointer;
+
+		i {
+			@include icon-btn;
+    
+            & {
+                border: none;
+                background: rgba( #fff, 0.5 );
+        
+                position: absolute;
+                
+                top: 50%;
+                transform: translate(0, -50%);
+            }
+
+		}
+
+		&:hover i {
+			color: var( --c-text--hover );
+		}
+
+        &.swiper-button-lock, 
+		&.swiper-button-disabled {
+			visibility: hidden;
+		}
+    }
+
+	&__prev-btn {
+		left: 0;
+	}
+
+	&__next-btn {
+		right: 0;
+	}
+
+}
+
+
+@mixin spoiler() {
+
+    --content-h: auto;
+    --hover-bg-display: none;
+
+    &__header {
+        @include reset-offsets;
+        @include no-appearance;
+
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    
+        cursor: pointer;
+
+        margin-bottom: 1rem;
+
+        position: relative; // for &:hover::before
+        z-index: 1;
+
+        i {
+            @include icon-btn();
+
+            & {
+                order: 2;
+                font-size: 0.6rem;
+                transition: transform 0.3s;
+    
+            }
+
+            &::before {
+                position: relative;
+                top: 1px;
+            }
+
+        }
+
+
+        &:hover::before {
+
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -1.2rem;
+            left: -2rem;
+            right: -2rem;
+            bottom: -0.8rem;
+            border-radius: 4rem;
+            background: $c-bw2;
+
+            display: var( --hover-bg-display );
+
+        }
+    }
+
+    &__clipper {
+        height: 0;
+        transition: height 0.3s;
+        overflow: hidden;
+    }
+
+    &__content {
+        display: none;
+
+        padding-top: 0.5rem;
+        padding-bottom: 2em;
+        padding-left: 0;
+        padding-right: 0;
+
+    }
+
+    &--expanded & { 
+
+        &__header i {
+            transform: rotate(180deg);
+        }
+
+        &__clipper {
+            height: var( --content-h );
+        }
+
+    }
+
+}
+
+
+
+@mixin img-cover() {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+
+}
+
+%no-appearance {
+
+	border: none;
+	background: none;
+	appearance: none;
+	-webkit-appearance: none;
+
+}
+
+@mixin no-appearance() {
+
+	border: none;
+	background: none;
+	appearance: none;
+	-webkit-appearance: none;
+
+}
+
+@mixin clearfix() {
+
+	&::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+}
+
+%reset-offsets {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin reset-offsets() {
+	margin: 0;
+    padding: 0;
+}
+
+@function bpoint( $name-or-value ) {
+
+	@if type-of( $name-or-value ) == string {
+		@return map-get( $bpoints, $name-or-value );
+	}
+
+	@return $name-or-value;
+
+}

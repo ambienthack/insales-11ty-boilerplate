@@ -1,0 +1,21 @@
+{% assign collection_url = "/templates/collection/" %}
+
+<section class="p-slider">
+    <header class="p-slider__header">
+        <h2 class="p-slider__title">{{ title }}</h2>
+        {% if show_more_btn %}
+            <a class="p-slider__more-btn" href="{{ collection_url }}">Смотреть все &gt;</a>
+        {% endif %}
+    </header>
+    
+    <div class="p-slider__slider swiper">
+        <div class="p-slider__slides swiper-wrapper">
+            {% for product in products %}
+                {% include "p-card", product: product, class: "p-slider__slide swiper-slide" %}
+            {% endfor %}
+        </div>
+
+        <button class="p-slider__prev-btn"><i class="i i-prev-btn"></i></button>
+        <button class="p-slider__next-btn"><i class="i i-next-btn"></i></button>
+    </div>
+</section>

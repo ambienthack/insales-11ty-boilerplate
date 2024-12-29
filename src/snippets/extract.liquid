@@ -1,0 +1,22 @@
+{%- comment  -%} 
+
+Extracts component from a string with delimiters, 
+For example, "Footer | Menu".
+
+If index is out of range, returns the fallback string 
+(the whole string by default).
+
+{% include 'extract', text: menu.title, index: 0, fallback: '', delim: '|' %}
+or
+{% include 'extract', text: menu.title, index: 0 %}
+
+{%- endcomment -%}
+{%- assign fallback = fallback | default: text -%}
+{%- assign index = index | default: 0 -%}
+{%- assign delim = delim | default: "|" -%} 
+{%- assign parts = text | split: delim -%}
+{%- if parts.size > index -%}
+    {{- parts[ index ] -}}
+{%- else -%}
+    {{- fallback -}}
+{%- endif -%}

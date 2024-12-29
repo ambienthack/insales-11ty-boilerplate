@@ -1,0 +1,8 @@
+{% include "system_v4_fonts" %}
+
+<link href="{{ 'icons.css' | asset_url }}" rel="stylesheet" type="text/css" />
+{% if devmode %} 
+<link href="/scss/theme.scss" rel="stylesheet" type="text/css" onload="document.body.classList.add('settings_loaded');" />
+{% else %}
+<link href="{{ 'theme.css' | asset_url }}" rel="stylesheet" type="text/css" onload="document.body.classList.add('settings_loaded');" />
+{% endif %}

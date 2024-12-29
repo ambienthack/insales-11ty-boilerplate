@@ -1,0 +1,44 @@
+.micro-alert-item {
+    
+    --c-back: #{ $c-bw6 };
+    --c-text: #{ $c-back };
+    
+    $h: 4rem;
+    $f-size: 1.2rem;
+
+    border-radius: $h * 0.5;
+    background: var( --c-back ) !important;
+    color: var( --c-text ) !important;
+    font-size: $f-size;
+
+    @include -pad-h( $h, $f-size, $root-line-h );
+    padding: var( --pad-h ) 2.6rem;
+
+    animation: micro-alert-opacity .3s;
+
+    [class^="icon-"] {
+        display: none;
+    }
+
+    &.is-success-notice,
+    &.is-info-notice {
+
+    }
+
+    &.is-warning-notice,
+    &.is-error-notice {
+        --c-back: #{ $c-red12 };
+        --c-text: #{ $c-red17 };
+    }
+
+}
+
+@keyframes micro-alert-opacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

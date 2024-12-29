@@ -1,0 +1,73 @@
+.co-modal,
+.m-modal {
+    box-shadow: none;
+    border-radius: 1rem;
+
+    @media (max-width: max-width(xxs)) {
+
+        border-radius: 0;
+        
+    }
+}
+
+.co-modal-wrapper,
+.m-modal-wrapper {
+    padding: 7rem 5rem;
+   
+}
+
+.co-modal-close,
+.m-modal-close {
+
+    &::after {
+        display: none;
+    }
+
+    @include icon-btn();
+
+    
+    &::before {
+        font-family: "icons";
+        content: "\e000"
+    }
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+}
+
+.m-modal-errors {
+
+    &:empty {
+        display: none;
+    }
+
+}
+
+.co-modal-title,
+.m-modal-heading {
+
+    @include h1;
+
+    @media (min-width: min-width(m)) {
+        --h1-f-size: 1.8rem;
+    }
+
+}
+
+
+.co-modal-errors,
+.m-modal-errors {
+    background: $c-red12;
+    color: $c-red17;
+    font-weight: $fw-medium;
+    font-size: 1.2rem;
+    padding: 2rem;
+    border-radius: var( --input-border-r );
+}
+
+.m-modal-button {
+    width: 100%;
+}
+

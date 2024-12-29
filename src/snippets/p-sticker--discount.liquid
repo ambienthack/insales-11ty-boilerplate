@@ -1,0 +1,6 @@
+{% unless product.price_varies? %}
+    {% if product.price < product.old_price %}
+        {% assign discount = product.old_price | minus: product.price | divided_by: product.old_price | times: 100.0 | floor %}
+        <span class="{{ class }} sticker">-{{ discount }}%</span>
+    {% endif %}
+{% endunless %}

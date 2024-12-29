@@ -1,0 +1,464 @@
+@mixin icon-btn() {
+    @include no-appearance();
+
+    $size: var( --icon-btn-size );
+
+    width: $size;
+    height: $size;
+    box-sizing: border-box;
+
+    border: 0.1rem solid $c-bw3;
+    border-radius: $size;
+
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    position:relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -1rem;
+    }
+
+    &:hover {
+        @include link-hover();
+    }
+
+}
+
+.form {
+    --text-f-size: 1.3rem;
+
+    //size of text inside inputs
+    --input-f-size: 1.3rem;
+    --input-f-weight: normal;
+
+    //size of text inside of form
+    font-size: var( --text-f-size );
+    color: $c-bw7;
+
+    &__item {
+
+        //currently only used in footer subscribtion
+        * + & {
+            margin-top: 2.5rem;
+        }
+
+    }
+
+    @media (max-width: max-width(m)) {
+        --text-f-size: 1.1rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        --text-f-size: 1.3rem;
+    }
+}
+
+.btn {
+    @include no-appearance;
+    @include reset-offsets;
+
+    --color: #{ $c-bw10 };
+    --b-color: var( --bg-color );
+    --bg-color: #{ $c-bw2 };
+
+    --color--hover: var( --color );
+    --b-color--hover: var( --bg-color--hover );
+    --bg-color--hover: #{ $c-bw3 };
+
+    --pad-w: 2.6rem;
+    --pad-w--wide: 6rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: var( --input-h );
+    padding: 0 var( --pad-w );
+    box-sizing: border-box;
+
+    border: 0.1rem solid var( --b-color );
+    background: var( --bg-color );
+
+    color: var( --color );
+    font: inherit;
+    font-size: var( --btn-f-size );
+    font-weight: var( --btn-f-weight );
+    letter-spacing: 0.05em; 
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    //icon position fix
+    &.i::before {
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+    }
+
+    &:focus,
+    &:hover {
+        color: var( --color--hover );
+        border-color: var( --b-color--hover );
+        background: var( --bg-color--hover );
+    }
+
+    &--wide {
+        padding-left: var(--pad-w--wide);
+        padding-right: var(--pad-w--wide);
+    }
+
+    &--mini {
+        --color: #{ $c-bw10 };
+        --bg-color: #{ $c-bw1 };
+
+        --bg-color--hover: #{ $c-bw2 };
+
+        --input-h: 2rem;
+
+        padding: 0 1.5rem;
+        
+        font-size: 1.2rem;
+        font-weight: normal;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+
+    &--primary {
+
+        --color: #{ $c-back };
+        --bg-color: #{ $c-bw10 };
+        --bg-color--hover: #{ $c-bw8 };
+
+    }
+
+    &--primary:disabled {
+        --bg-color: #{ $c-bw6 };
+        --bg-color--hover: #{ $c-bw6 };
+    }
+
+    &--secondary {
+        --color: #{ $c-bw10 };
+        --b-color: var( --bg-color );
+        --bg-color: #{ $c-bw2 };
+    
+        --color--hover: var( --color );
+        --b-color--hover: var( --bg-color--hover );
+        --bg-color--hover: #{ $c-bw3 };
+    }
+
+    &--outline {
+
+        --color: #{ $c-bw5 };
+        --b-color: #{ $c-bw3 };
+        --bg-color: #{ $c-back };
+        
+        --color--hover: #{ $c-text };
+        --b-color--hover: #{ $c-bw6 };
+        --bg-color--hover: transparent;
+    }
+
+    &--link,
+    &--link:hover,
+    &--transparent {
+        --color: inherit;
+        --b-color: transparent;
+        --bg-color: transparent;
+
+        --color--hover: #{ $c-text };
+        --bg-color--hover: transparent;
+    }
+
+    &--link {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    @media (max-width: max-width(m)) {
+        --pad-w--wide: 3rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        --pad-w: 2rem;
+    }
+
+}
+
+@mixin input-box() {
+    height: var(--input-h);
+    box-sizing: border-box;
+    border: 0.1rem solid var( --input-border-c );
+
+    &:focus-within {
+        border-color: var( --input-border-c--focus );
+    }
+}
+
+@mixin input-typo() {
+    font-size: var( --input-f-size );
+    font-weight: var(  --input-f-weight );
+    color: $c-bw9;
+}
+
+@mixin f-item( $label-sel, $desc-sel: null ) {
+
+    --label-f-size: 1.2rem;
+    --label-c: #{$c-bw5};
+    --desc-f-size: 1rem;
+
+    #{$label-sel} {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+        top: 1rem;
+        left: 2rem;
+        padding: 0 0.5rem;
+        background: $c-back;
+        font-size: var( --label-f-size );
+        font-weight: $fw-medium;
+        color: var( --label-c );
+    }
+
+    @if $desc-sel != null {
+        #{$desc-sel} {
+            font-size: var( --desc-f-size );
+            line-height: 1.4;
+            margin-top: 2rem;
+        }
+    }
+
+    @media (max-width: max-width(m)) {
+        --desc-f-size: 0.8rem;
+    }
+
+    @media (max-width: max-width(m)) {
+        --label-f-size: 1rem;
+        --desc-f-size: 0.9rem;
+    }
+}
+
+.f-item {
+    @include f-item("&__label", "&__desc");
+}
+
+.input-group {
+    @include reset-offsets();
+    @include input-typo();
+    @include input-box();
+
+    & {
+        display: flex;
+        align-items: stretch;
+    }
+
+    input {
+        @extend %reset-offsets;
+        @extend %no-appearance;
+
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        
+        box-sizing: border-box;
+        padding: 0 1.7rem 0 2.5rem;
+
+        color: inherit;
+        font: inherit;
+
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+
+        &::placeholder{
+            color: $c-bw5;
+            letter-spacing: 0.05em;
+        }
+        
+    }
+
+    &--prefix {
+        & > span {
+            padding-left: 2rem;
+            line-height: var( --input-h--inner );
+            color: $c-bw5;
+            font-weight: $fw-medium;
+        }
+
+        & > input {
+            border-radius: inherit;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            padding-left: 0.5rem;
+        }
+    } 
+
+    &--btn {
+
+        & > input {
+            border-radius: inherit;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        & > .btn {
+            flex: 0 0 auto;
+
+            --h: calc( var(--input-h--inner) - var(--input-pad-h) * 2 );
+            height: var(--h);
+            padding: 0 1.7rem;
+            margin: var( --input-pad-h );
+            margin-left: 0;
+
+            font-size: 1.2rem;
+
+        }
+    }
+}
+
+.range-input {
+
+    padding: 1rem 0;
+
+    --from-value: 10%;
+    --to-value: 40%;
+
+    &__slider {
+        margin-bottom: 2rem;
+    }
+
+    &__gutter {
+        height: 0.1rem;
+        background: $c-bw3;
+
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            background: $c-bw10;
+            height: 100%;
+            left: var( --from-value );
+            right: calc( 100% - var( --to-value) );
+        }
+    }
+
+    &__handle {
+        @include icon-btn;
+
+
+        & {
+            position: absolute;
+            top: 0;
+    
+            transform: translate(-50%, -50%);
+            background: $c-back;
+        }
+
+    }
+
+    &__handle:nth-child(1) {
+        left: var( --from-value );
+    }
+
+    &__handle:nth-child(2) {
+        left: var( --to-value );
+    }
+
+    &__values {
+        display: flex;
+        gap: 2rem;
+
+        & > * {
+            flex: 1;
+        }
+    }
+}
+
+.check-group {
+
+    .checkbox {
+        display: block;
+        margin-bottom: 1.3rem;
+    }
+
+}
+
+@mixin toggle( $check-sel, $check--checked-sel ) {
+    #{ $check-sel } {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 1rem;
+
+        width: var( --input-toggle-size );
+        height: var( --input-toggle-size );
+        border: 0.1rem solid $c-bw3;
+        border-radius: var( --input-toggle-size );
+
+        background: $c-back none no-repeat center;
+    }
+
+    #{ $check--checked-sel } {
+        background-image: url( asset_url("f-check.svg") );
+    }
+}
+
+@mixin checkbox( $label-sel, $check-sel, $check--checked-sel ) {
+
+    #{ $label-sel } {
+        color: $c-bw10;
+        font-size: 1.6rem;
+        line-height: var( --input-toggle-size );
+        letter-spacing: 0.05em;
+    }
+   
+    @include toggle( $check-sel, $check--checked-sel );
+
+}
+
+.checkbox {
+
+    input {
+        @include no-appearance;
+        @include reset-offsets;
+    }
+
+    @include checkbox( "&", "input", "input:checked" );
+
+
+
+}
+
+.select {
+    @include no-appearance();
+    @include input-typo();
+    @include input-box();
+
+    $tick-w: 1.6rem;
+    $pad-w: 1.5rem;
+
+    & {
+        padding-left: $pad-w;
+        padding-right: $pad-w * 2 + $tick-w;
+    
+        background: transparent url(asset_url("select-tick.svg")) no-repeat right center; 
+        background-position: right $pad-w center;
+        background-size: 1.1rem auto;
+    }
+
+}
+

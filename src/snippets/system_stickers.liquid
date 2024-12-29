@@ -1,0 +1,14 @@
+{%- assign sticker_property = sticker_property | default: 'label' -%}
+{%- assign sticker_class = sticker_class | default: 'product-sticker' -%}
+{%- assign labels_list = '' -%}
+{%- if product.properties[sticker_property] -%}
+  {%- for characteristic in product.properties[sticker_property].characteristics -%}
+    {%- capture main_sticker -%}<div class="{{ sticker_class }} {{ sticker_class }}-{{ characteristic.handle }}" data-sticker-title="{{ characteristic.title | remove: ":" | remove: "'" | remove: '"' }}">{{ characteristic.title }}</div>{%- endcapture -%}
+    {%- assign labels_list = labels_list | append: main_sticker -%}
+    {%- assign main_sticker = null -%}
+  {%- endfor -%}
+{%- endif -%}
+{{- labels_list -}}
+{%- assign labels_list = null -%}
+{%- assign sticker_property = null -%}
+{%- assign sticker_class = null -%}

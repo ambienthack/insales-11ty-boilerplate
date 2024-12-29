@@ -1,0 +1,280 @@
+.p-list {
+
+    margin: 4rem 0 9rem;
+
+    @include grid12(4,4,4);
+    row-gap: 4rem;
+
+    .widget-type_linii_pl_header + .widget-type_linii_p_list & {
+
+        margin-top: 0;
+
+    }
+
+    @media (max-width: max-width(m)) {
+        
+        & .p-card {
+            --title-f-size: 1.3rem;
+        }
+        
+    }
+
+    @media (max-width: max-width(s)) {
+        
+        grid-template-columns: 6fr 6fr;
+
+    }
+
+}
+
+.p-more-btn {
+
+    --f-size: 1.2rem;
+
+    margin: 2rem 0;
+
+    text-align: center;
+    font-size: var( --f-size );
+    text-transform: uppercase;
+
+    &__label {
+        margin-top: 1rem;
+    }
+
+    &.is-loading &__btn {
+        span {
+            visibility: hidden;
+        }
+
+        background-image: url(./loader.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 10px;
+    }
+
+    @media (max-width: max-width(m)) {
+        --f-size: 1rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        --f-size: 1.2rem;
+    }
+
+}
+
+.p-paginate {
+
+    --f-size: 1.2rem;
+    --bullet-size: 4rem;
+
+    margin: 2rem 0;
+
+    font-size: var( --f-size );
+    line-height: var( --bullet-size );
+
+    list-style: none;
+    display: flex;
+    column-gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+
+    &__btn {
+
+        padding: 0 1.6rem;
+
+        &--disabled {
+            color: $c-bw5;
+            pointer-events: none;
+        }
+
+    }
+
+    &__label {
+
+        display: inline-flex;
+        width: var( --bullet-size );
+        height: var( --bullet-size );
+        justify-content: center;
+        align-items: center;
+
+        
+    }
+
+    &__label--active {
+
+        @extend .btn;
+        @extend .btn--primary;
+
+        padding: 0;
+        color: $c-back !important;
+
+
+    }
+
+    @media (max-width: max-width(m)) {
+        --f-size: 1rem;
+        --bullet-size: 3.5rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        --f-size: 1.2rem;
+
+        &__item {
+            font-size: 1.3rem;
+        }
+    }
+
+}
+
+.pl-header {
+
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+
+    &__filter-btn,
+    &__sort-btn {
+       
+    }
+
+    &__bar {
+        display: flex;
+        justify-content: space-between;
+
+        
+    }
+
+}
+
+.p-sorting {
+
+    position: relative; //for drop-down
+    z-index: $z-dropdown;
+
+    font-size: 1.2rem;
+    font-weight: $fw-medium;
+
+    &__toggle-btn {
+
+    }
+
+    &__content {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 1rem;
+
+        display: none;
+
+        border: 0.1rem solid $c-bw3;
+        border-radius: 1rem;
+        background: $c-back;
+
+        padding: 1.9rem 1.4rem;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__option {
+
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0 5.2rem 0 1.2rem;
+
+        white-space: nowrap;
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+
+        &:has(input[checked]) {
+            border-radius: 2rem;
+            border: 0.1rem solid $c-bw3;
+        }
+
+        &:hover {
+            @include link-hover;
+        }
+
+    }
+
+    &__option-btn {
+
+    }
+
+    &__option-btn-check {
+
+    }
+
+    &--open & {
+
+        &__content {
+            display: block;
+        }
+
+    }
+
+    @media (max-width: max-width(s)) {
+
+        position: static;
+        z-index: auto;
+
+        &__content {
+            display: block;
+            position: fixed;
+            left: 0;
+            top: auto;
+            right: 0;
+            bottom: 0;
+            z-index: $z-modal;
+            max-height: 100vh;
+            overflow-y: auto;
+            transform: translate3d(0, 100%, 0);
+            visibility: hidden;
+            transition: .3s;
+
+            border-radius: 0;
+            border-style: solid none none;
+        }
+
+        &::before {
+            content: "";
+            position: fixed;
+            z-index: $z-modal - 1;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+
+            background: rgba( #000, 0 );
+            transition: background-color 300ms;
+
+            display: none;
+        }
+
+        &--open {
+            &::before {
+                display: block;
+                background: rgba( #000, 0.25 );
+            }
+
+
+        }
+
+        &--open & {
+
+            &__content {                
+                transform: translate3d(0, 0, 0);
+                visibility: visible;
+            }
+            
+        }
+
+    }
+
+}

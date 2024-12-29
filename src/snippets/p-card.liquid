@@ -1,0 +1,35 @@
+{% assign class = class | default: "" %} 
+<article class="p-card {{ class }} {% unless product.available %}p-card--not-available{% endunless %}">
+    <div class="p-card__header">
+        <div class="p-card__stickers">
+            {% unless product.available %}
+                <span>Нет в наличии</span>
+            {% else %}
+                {% include 'p-sticker--discount', product: product, class: '' %}
+                {% include 'system_stickers', sticker_class: 'sticker', sticker_property: 'label' %}
+            {% endunless %}
+        </div>
+        {% if settings.favorite_enabled %}
+            <button class="p-card__fav-btn i "></button>
+        {% endif %}
+    </div>
+
+    <a class="p-card__link" href="{{ product.url }}">
+        <div class="p-card__img">
+            {% if product.images.size > 0 %}
+                {% include 'image', url: product.first_image, class: "", alt: product.title, sizes_abbr: '25vw' %}  {%  comment  %} TODO sizes {% endcomment %} 
+            {% endif %}
+        </div>
+        <h3 class="p-card__title">{{ product.title }}</h3>
+        {% include 'p-price', product: product, class: 'p-card__price' %}
+    </a>
+
+    <ul class="p-card__colors p-colors">
+        {% for color in product.colors %}
+            <li>
+                <a class="p-colors__value" href="#" style="--color: {{ color }}"></a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</article>

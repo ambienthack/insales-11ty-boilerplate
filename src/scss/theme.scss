@@ -1,0 +1,170 @@
+@use "sass:math";
+
+@import "reset";
+
+$bpoints: (
+    'desk': 1512px,
+    'tab': 1024px,
+    'mob': 390px,
+    
+    'xl': 1400px,
+	'l': 1200px,
+	'm': 992px, //or 1024px,
+	's': 768px,
+	'xs': 640px,
+	'xxs': 480px
+);
+
+$z-dropdown: 50;
+$z-header: 100;
+$z-sidebar: 200; //filter
+$z-cart: 200; 
+$z-cookies: 300;
+$z-modal: 1000;
+
+$c-bw1: #F7F7F2;
+$c-bw2: #EAEAE6;
+$c-bw3: #D6D6D1;
+$c-bw4: #C1C1BD;
+$c-bw5: #A5A5A1;
+$c-bw6: #838381;
+$c-bw7: #646462;
+$c-bw8: #484847;
+$c-bw9: #313130;
+$c-bw10: #1F1F1E;
+$c-bw11: #121212;
+
+$c-red12: #FDE7E2;
+$c-red13: #FCCAC0;
+$c-red14: #FAA999;
+$c-red15: #F88972;
+$c-red16: #F66C51;
+$c-red17: #F4502F;
+
+$c-redE4: #E4300C;
+$c-redB8: #B8270A;
+$c-red88: #881D07;
+$c-red57: #571205;
+$c-red27: #270802;
+
+$c-back: #FBFBF6;
+$c-text: $c-bw10;
+
+@import "mixins/icons";
+@import "mixins/math";
+@import "mixins/type";
+@import "mixins/layout";
+
+@import "type";
+
+:root { 
+
+    --content-pad-w: 3rem; 
+    --grid-col-gap: 2rem; 
+
+    //useful in a situation when top-bar is present and visible on screen
+    --h-bar-top--menu-open: 0px; 
+    --h-bar-h: 7rem;
+    --header-h: var( --h-bar-h ); //NB: if anything else is added to the fixed header, add its height here
+
+    --input-h: 4rem;
+    --input-border-r: 2rem;
+    --input-border-c: #{ $c-bw3 }; 
+    --input-border-c--focus: #{ $c-bw6 };
+    --input-border-c--error: #{ $c-red17 };
+    --input-h--inner: 3.8rem; // 0.2 rem for border;
+    --input-pad-h: 0.5rem;
+    //--input-pad-w: 1.7rem;
+    --input-toggle-size: 2rem; //checkbox, radio 
+
+    --btn-f-size: 1.2rem;
+    --btn-f-weight: #{ $fw-medium };
+
+    --icon-btn-size: 2rem;
+   
+    --c-text--hover: #{ $c-bw6 };
+    --text-col-gap: 2rem; 
+
+    @media (max-width: max-width(m)) {
+
+        --h-bar-h: 5.5rem;
+
+        --input-h: 3.5rem;
+        --input-border-r: 1.75rem;
+        --input-h--inner: 3.3rem; // 0.2 rem for border;
+
+        --btn-f-size: 1rem;
+
+        --icon-btn-size: 2.5rem;
+    }
+
+    @media (max-width: max-width(s)) {
+        --content-pad-w: 1.7rem;
+        --grid-col-gap: 1rem;
+
+        --btn-f-size: 1.3rem;
+        --btn-f-weight: #{ $fw-normal };
+    }
+
+    @media (max-width: max-width(xs)) {
+     
+        --text-col-gap: 0.8rem;
+    }
+
+}
+
+html {
+    /* 62.5% of 16px browser font size is 10px */
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    background: $c-back;
+    color: $c-text;
+
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    $focus-w: 0.5rem;
+    $c-focus: #F4502F;
+
+    outline: none;
+    
+    body.user-is-tabbing & {
+        outline: $focus-w solid rgba( $c-focus, 0.7 ); 
+    }
+    
+}
+
+*::selection {
+    background-color: $c-bw3;
+}
+
+.hidden {
+    display: none;
+}
+
+@import "form";
+@import "page";
+@import "header";
+@import "footer";
+@import "spoiler";
+
+@import "poster";
+@import "p-card";
+@import "p-slider";
+@import "p-list";
+
+@import "insales/common-vars";
+@import "insales/common-layout";
+@import "insales/common-elements";
+@import "insales/form";
+@import "insales/checkout";
+@import "insales/modal";
+@import "insales/microalert";
+@import "insales/notice";
+@import "insales/acc-menu";
+

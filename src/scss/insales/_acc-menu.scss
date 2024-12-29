@@ -1,0 +1,62 @@
+.co-menu-toggle {
+    display: none !important;
+}
+
+.co-sidebar--menu {
+
+    --f-size: 1.2rem;
+
+    font-size: var( --f-size );
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    max-width: 23rem;
+
+    margin-top: 12.7rem;
+
+}
+
+.co-menu {
+
+    @include reset-offsets;
+
+    padding: 0 var( --block-pad-w );
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-item {
+
+        &:has([href="/templates/client_account/discounts/"]),
+        &:has([href="/client_account/discounts"]) {
+            display: none;
+        }
+
+    }
+    
+    &-link {
+        $h: 4rem;
+        cursor: pointer;
+
+        display: block;
+        @include -pad-h( $h, var( --f-size ), $root-line-h );
+        padding: var( --pad-h ) 2rem;
+
+        text-decoration: none;
+
+        line-height: inherit;
+
+        &--active {
+            background: $c-bw2;
+        }
+
+        &:hover {
+            @include link-hover; 
+        }
+    
+    }
+
+}

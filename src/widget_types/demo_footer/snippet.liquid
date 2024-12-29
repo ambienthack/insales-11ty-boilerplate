@@ -1,0 +1,54 @@
+{% assign menu_names = "f-nav1,f-nav2,f-nav3" |  split: "," %}
+{% assign menu_state = ",,f-nav--expanded" |  split: ',' %}
+
+<footer class="footer">
+    
+    <div class="footer__main">
+
+        {% for menu_name in menu_names %}
+            {% assign menu = linklists[ menu_name ] %}
+            {% assign menu_class = menu_state[forloop.index0] %}
+            <nav class="footer__nav f-nav {{ menu_class }}">
+                <h2 class="f-nav__header">
+                    {% include 'extract', text: menu.title, index: 1 %} <i class="i i-spoiler-tick"></i>
+                </h2>
+                <div class="f-nav__content">
+                    <ul class="f-nav__list">
+                        {% for link in menu.links %}
+                            <li class="f-nav__item">
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                            </li>
+                        {% endfor %} 
+                    </ul>
+                </div>
+            </nav>
+        {% endfor %}
+
+        <section class="footer__mailing f-mailing">
+            <h2 class="f-mailing__title">ПОДПИШИТЕСЬ НА РАССЫЛКУ</h2>
+            <form class="form">
+                <div>
+                    Будьте в курсе новых коллекций, мероприятий и эксклюзивного контента.
+                </div>
+                
+                <div class="form__item f-item">
+                    <div class="f-item__label">Эл. почта</div>
+                    <div class="f-item__input input-group input-group--btn">
+                        <input type="email"><button class="btn" type="submit" >OK</button>
+                    </div>
+                    <div class="f-item__desc">
+                        Нажимая на кнопку "Подписаться" Вы соглашаетесь на обработку персональных данных и получение новостей, а также подтверждаете, что ознакомились с политикой конфиденциальности
+                    </div>
+                </div>
+                
+            </form>
+            
+            
+        </section>
+
+    </div>
+
+    <div class="footer__copyright">
+        © DEMO {{ 'now' | date: "%Y" }}
+    </div>
+</footer>

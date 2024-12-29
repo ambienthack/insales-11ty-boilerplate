@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+  class="{{ default_checkout2_layout_class }}"
+  style="
+    {% include "system_v4_required_styles" %}
+  "
+>
+  <head>
+    {% include "head" %}
+    {% if devmode %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    {% endif %}    
+  </head>
+  <body data-layout="checkout" class="adaptive" data-multi-lang="{{ language.not_default? }}">
+    {% include "system_no_js_alert" %}
+    <div class="page_layout page_layout-clear">
+      <header>
+        {% for widgetDrop in widget_lists.header-list.widgets %}
+        {% widget widgetDrop %}
+        {% endfor %}
+      </header>
+      <main>
+        <div class="layout">
+          <div class="layout__content">
+            <div class='checkout-v2-wrapper co-section--checkout_content'>
+              <div class='co-section--checkout_order co-section--checkout_order_sided'>
+                <div class='co-section--checkout_header co-checkout-block--padded'>
+                  <div class="decorated-title-wrapper co-checkout-title">
+                    <h1 class='decorated-title co-title co-title--h1'>
+                      {% if devmode %}
+                        {{ title }}
+                      {% else %}
+                        {% yield 'title' %}
+                      {% endif %}
+                    </h1>
+                  </div>
+                </div>
+                {% if devmode %}
+                  <div class="co-notice--danger co-notice--flash" id="checkout_order_errors" style="">В вашей корзине есть товар, недоступный для покупки.<br>Для продолжения удалите товар из корзины или уменьшите его количество.<br><br>Свитер 2 (S) - доступно только 0 шт.<br>out of stock<br><br><a href="/cart_items">Нажмите сюда для перехода в корзину</a><br><ba>Свитер 2 (S) - доступно только 0 шт.<br><ba>out of stock</ba></ba></div>
+
+                  {% include "co-sidebar" %}
+                {% else %}
+                  {% yield 'sidebar' %}
+                {% endif %}
+                {% if devmode %}
+                  {{ content }}
+                {% else %}
+                  {% yield %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        {% for widgetDrop in widget_lists.footer-list.widgets %}
+        {% widget widgetDrop %}
+        {% endfor %}
+      </footer>
+
+    </div>
+    <div class="outside-widgets">
+      {% for widgetDrop in widget_lists.outside-list.widgets %}
+        {% widget widgetDrop %}
+      {% endfor %}
+    </div>
+  </body>
+  {{ 'checkout2.core' | global_stylesheet_tag }}
+
+  {%- capture css_js_lists -%}header-list, footer-list, sidebar-list, outside-list, {{ template }}-list, {{ template }}-section_top-list, {{ template }}-section_bottom-list{%- endcapture -%}
+
+  {% if sidebar_show %}
+    {% if template contains 'blog' or template contains 'article' %}
+        {% assign css_js_lists = css_js_lists | append: ', sidebar_blog-list' %}
+    {% else %}
+        {% assign css_js_lists = css_js_lists | append: ', sidebar-list' %}
+    {% endif %}
+  {% endif %}
+
+  {% widgets_assets css_js_lists %}
+
+  {% include "styles" %}
+  {% if devmode %}
+    {%  comment  %}  
+    {% include "system_mock_micro_alert" %} 
+    {% endcomment %}  
+    <script type="module" src="/ts/theme.ts" charset="utf-8"></script>
+  {% else %}
+    <script src="{{ 'theme.js' | asset_url }}" charset="utf-8"></script>
+  {% endif %}
+
+</html>

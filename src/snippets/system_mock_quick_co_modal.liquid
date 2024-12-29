@@ -1,0 +1,39 @@
+<div class="m-modal m-modal--checkout" data-auto-activate="" data-quick-checkout-handle="default" data-use-mask="1" id="insales-quick-checkout-dialog" style="position: fixed;">
+  <div class="m-modal-wrapper">
+    <form id="quick_checkout_form" data-address-autocomplete="https://kladr.insales.ru" action="/orders/create_with_quick_checkout.json" accept-charset="UTF-8" method="post">
+      <input type="hidden" name="authenticity_token" value="hcWRnVBSfmcCZbIJHzMvfH-_dl9ps3OxG3TIXHJ1iIHhnxoRFO_AYte9DJ0mKF9eAmY7sRptgMewG5Vk-ujY0g" autocomplete="off">
+      <button class="m-modal-close" data-modal="close"></button>
+      <input name="quick_checkout_id" type="hidden" value="5150631">
+      <input name="quick_checkout_captcha_enabled" type="hidden" value="false">
+      <div class="m-modal-heading">Заказ в один клик</div>
+      <div class="m-modal-errors">Не заполнено обязательное поле "Контактный телефон"</div>
+      <input id="shipping_address_country" type="hidden" value="RU">
+      <div class="m-input m-input--required ">
+        <label for="client_contact_name" class="m-input-label">Ваше имя:</label>
+        <input class="m-input-field" placeholder="" type="text" id="client_contact_name" name="client[contact_name]" value="">
+      </div>
+      <div class="m-input m-input--required ">
+        <label for="client_phone" class="m-input-label">Контактный телефон:</label>
+        <input class="m-input-field" placeholder="" type="tel" id="client_phone" name="client[phone]" value="" im-insert="true">
+      </div>
+      <div class="m-input m-input--required m-input--checkbox">
+        <label for="client_consent_to_personal_data" class="m-input-label">Согласие на обработку персональных данных</label>
+        <input type="hidden" name="client[consent_to_personal_data]" value="0" id="" class="">
+        <input type="checkbox" name="client[consent_to_personal_data]" value="1" id="client_consent_to_personal_data" checked="1">
+        <span></span>
+        <div class="m-input-caption">
+          <p>Я ознакомлен и согласен с условиями <a href="/page/oferta" target="blank">оферты и политики конфиденциальности</a>. </p>
+        </div>
+      </div>
+      <div class="m-input">
+        <label class="m-input-label" for="order_comment">Комментарий:</label>
+        <textarea rows="2" class="m-input-field" autocomplete="off" name="order[comment]" id="order_comment"></textarea>
+      </div>
+      <div class="m-modal-footer">
+        <button class="m-modal-button m-modal-button--checkout button--checkout" type="submit">Заказ в один клик</button>
+      </div>
+      <input type="hidden" name="lang" value="">
+      <input type="hidden" name="order[viewed_product_ids]" value="[452135023,452135038]">
+    </form>
+  </div>
+</div>

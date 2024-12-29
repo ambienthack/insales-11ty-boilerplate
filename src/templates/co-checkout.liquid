@@ -1,0 +1,313 @@
+<div class="co-notice--danger co-notice--flash" id="checkout_order_errors" style="display: none"></div>
+<form id="order_form" class="co-checkout-order_form co-checkout-block--padded" data-onepage-checkout="true" data-checkout2="true" data-has-payment-rules="false" data-client-identifier="email" data-use-mask="1" action="/new_order" accept-charset="UTF-8"
+method="post">
+    <input type="hidden" name="authenticity_token" value="X70n-aWecnVBEMU1i8VHNejynTd4iMUvq-_sqX5a9VKwLJVMD-QjMPQ4lM8GjyVu81oeXLnQeV3ovwp2YpIV8A" autocomplete="off" />
+    <div class="co-delivery_method-list co-checkout-block">
+        <div class="co-checkout-block">
+            {% if client %}
+                <div class="co-client">
+                    <div class="co-client-logged">Вы авторизовались как <span class="co-client-name">{{ client.name }}</span></div>
+                    <div class="co-client-info">
+                        <div class="co-client-field">{{ client.phone }}</div>
+                        <div class="co-client-field">{{ client.email }}</div>
+                    </div>
+                    <a class="co-button" rel="nofollow" data-method="delete" href="/client_account/session?back=%2Fnew_order">Выход</a>
+                </div>
+            {% else %}
+                <div class="co-checkout-block">
+                    <div class="co-checkout-block">
+                        <h2 class="co-title co-title--h2 co-tabs-header">Авторизация</h2>
+                        <button class="co-button co-button--checkout co-button--checkout-login js-modal-toggler" data-target=".co-modal--login">Войти или зарегистрироваться</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <h2 class="co-title co-title--h2">Доставка</h2>
+        <div class="co-checkout-block" data-address-json=""
+        id="delivery_address">
+            <div class="co-input co-input--required">
+                <input id="shipping_address_country" type="hidden" value="RU" />
+                <div class="co-input co-input--required co-input--text co-input--full_locality_name  co-input--nested ">
+                    <label class="co-input-label" for="shipping_address_full_locality_name">Населенный пункт</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_full_locality_name" name="shipping_address[full_locality_name]" value="г Шатура, Московская обл." />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+                <div class="co-input-notice co-notice--danger" id="delivery-location-not-valid">Ошибка! Не удалось определить населенный пункт. Виды и стоимости доставок могут не соответствовать указанному населенному пункту. Чтобы исправить, начните вводить населенный пункт и выберите из появившейся подсказки.</div>
+            </div>
+        </div>
+        <div class="variants delivery_variants co-input co-input--required co-input--radio co-tabs" data-delivery-variants="{&quot;8141802&quot;:{&quot;id&quot;:8141802,&quot;selected&quot;:false,&quot;position&quot;:0,&quot;title&quot;:&quot;Самовывоз&quot;,&quot;price&quot;:0,&quot;description&quot;:&quot;\u003cp\u003eНа пункте выдачи\u003c/p\u003e&quot;,&quot;customer_pickup&quot;:true,&quot;is_external&quot;:false,&quot;external_url&quot;:false,&quot;api_version&quot;:false,&quot;charge_up_to&quot;:null,&quot;delivery_info&quot;:{&quot;delivery_variant_id&quot;:8141802,&quot;tariff_id&quot;:null,&quot;title&quot;:null,&quot;description&quot;:null,&quot;price&quot;:0.0,&quot;shipping_company&quot;:null,&quot;shipping_company_handle&quot;:null,&quot;delivery_interval&quot;:{&quot;min_days&quot;:null,&quot;max_days&quot;:null,&quot;description&quot;:&quot;&quot;},&quot;errors&quot;:[],&quot;warnings&quot;:[],&quot;fields_values&quot;:[],&quot;outlet&quot;:{&quot;id&quot;:null,&quot;external_id&quot;:null,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;title&quot;:null,&quot;description&quot;:null,&quot;address&quot;:null,&quot;payment_method&quot;:[],&quot;source_id&quot;:null},&quot;not_available&quot;:null},&quot;calculation_details&quot;:null,&quot;type&quot;:&quot;DeliveryVariant::None&quot;,&quot;free&quot;:null,&quot;show_calendar_in_checkout&quot;:null,&quot;delivery_date_required&quot;:null,&quot;forbid_weekends&quot;:null,&quot;forbidden_days&quot;:[],&quot;min_delivery_date&quot;:null,&quot;show_time_intervals_in_checkout&quot;:null,&quot;time_intervals_required&quot;:null,&quot;time_intervals&quot;:&quot;{\&quot;rest\&quot;:[]}&quot;,&quot;show_zip_code&quot;:false,&quot;available_for_individual_clients&quot;:true,&quot;available_for_juridical_clients&quot;:true,&quot;delivery_margin&quot;:0.0},&quot;8141803&quot;:{&quot;id&quot;:8141803,&quot;selected&quot;:false,&quot;position&quot;:1,&quot;title&quot;:&quot;Курьером&quot;,&quot;price&quot;:300,&quot;description&quot;:&quot;\u003cp\u003eДоставка курьером\u0026nbsp;\u003c/p\u003e&quot;,&quot;customer_pickup&quot;:false,&quot;is_external&quot;:false,&quot;external_url&quot;:false,&quot;api_version&quot;:false,&quot;charge_up_to&quot;:null,&quot;delivery_info&quot;:{&quot;delivery_variant_id&quot;:8141803,&quot;tariff_id&quot;:null,&quot;title&quot;:null,&quot;description&quot;:null,&quot;price&quot;:300.0,&quot;shipping_company&quot;:null,&quot;shipping_company_handle&quot;:null,&quot;delivery_interval&quot;:{&quot;min_days&quot;:null,&quot;max_days&quot;:null,&quot;description&quot;:&quot;&quot;},&quot;errors&quot;:[],&quot;warnings&quot;:[],&quot;fields_values&quot;:[],&quot;outlet&quot;:{&quot;id&quot;:null,&quot;external_id&quot;:null,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;title&quot;:null,&quot;description&quot;:null,&quot;address&quot;:null,&quot;payment_method&quot;:[],&quot;source_id&quot;:null},&quot;not_available&quot;:null},&quot;calculation_details&quot;:null,&quot;type&quot;:&quot;DeliveryVariant::Fixed&quot;,&quot;free&quot;:null,&quot;show_calendar_in_checkout&quot;:null,&quot;delivery_date_required&quot;:null,&quot;forbid_weekends&quot;:null,&quot;forbidden_days&quot;:[],&quot;min_delivery_date&quot;:null,&quot;show_time_intervals_in_checkout&quot;:null,&quot;time_intervals_required&quot;:null,&quot;time_intervals&quot;:&quot;{\&quot;rest\&quot;:[]}&quot;,&quot;show_zip_code&quot;:false,&quot;available_for_individual_clients&quot;:true,&quot;available_for_juridical_clients&quot;:true,&quot;delivery_margin&quot;:0.0}}"
+        data-pickup-sources="" data-shipping-companies="[{&quot;title&quot;:&quot;СПСР&quot;,&quot;handle&quot;:&quot;cpcr&quot;},{&quot;title&quot;:&quot;Почта России&quot;,&quot;handle&quot;:&quot;russianpost&quot;},{&quot;title&quot;:&quot;A1.express&quot;,&quot;handle&quot;:&quot;a1express&quot;},{&quot;title&quot;:&quot;PickPoint&quot;,&quot;handle&quot;:&quot;pickpoint&quot;},{&quot;title&quot;:&quot;СДЭК&quot;,&quot;handle&quot;:&quot;cdek&quot;},{&quot;title&quot;:&quot;Boxberry&quot;,&quot;handle&quot;:&quot;boxberry&quot;},{&quot;title&quot;:&quot;Grastin&quot;,&quot;handle&quot;:&quot;grastin&quot;},{&quot;title&quot;:&quot;Shop-logistics&quot;,&quot;handle&quot;:&quot;shoplogistics&quot;},{&quot;title&quot;:&quot;B2CPL&quot;,&quot;handle&quot;:&quot;b2cpl&quot;},{&quot;title&quot;:&quot;I-courier&quot;,&quot;handle&quot;:&quot;icourier&quot;},{&quot;title&quot;:&quot;Migpoint&quot;,&quot;handle&quot;:&quot;migpoint&quot;},{&quot;title&quot;:&quot;Axiomus&quot;,&quot;handle&quot;:&quot;axiomus&quot;},{&quot;title&quot;:&quot;CSE&quot;,&quot;handle&quot;:&quot;cse&quot;},{&quot;title&quot;:&quot;DPD&quot;,&quot;handle&quot;:&quot;dpd&quot;},{&quot;title&quot;:&quot;Hermes Russia&quot;,&quot;handle&quot;:&quot;hermes&quot;},{&quot;title&quot;:&quot;IML&quot;,&quot;handle&quot;:&quot;iml&quot;},{&quot;title&quot;:&quot;Logsis&quot;,&quot;handle&quot;:&quot;logsis&quot;},{&quot;title&quot;:&quot;MaxiPost&quot;,&quot;handle&quot;:&quot;maxipost&quot;},{&quot;title&quot;:&quot;Pony Express&quot;,&quot;handle&quot;:&quot;ponyexpress&quot;},{&quot;title&quot;:&quot;Казпочта&quot;,&quot;handle&quot;:&quot;kazpost&quot;},{&quot;title&quot;:&quot;Уже выехали&quot;,&quot;handle&quot;:&quot;viehali&quot;},{&quot;title&quot;:&quot;Вестовой&quot;,&quot;handle&quot;:&quot;vestovoy&quot;},{&quot;title&quot;:&quot;Кенгу24&quot;,&quot;handle&quot;:&quot;kengu24&quot;},{&quot;title&quot;:&quot;ПЭК&quot;,&quot;handle&quot;:&quot;pecom&quot;},{&quot;title&quot;:&quot;СТРИЖ&quot;,&quot;handle&quot;:&quot;strizh&quot;},{&quot;title&quot;:&quot;ГЦСС&quot;,&quot;handle&quot;:&quot;gcss&quot;},{&quot;title&quot;:&quot;Shiptor&quot;,&quot;handle&quot;:&quot;shiptor&quot;},{&quot;title&quot;:&quot;Укрпошта&quot;,&quot;handle&quot;:&quot;ukrposhta&quot;},{&quot;title&quot;:&quot;Нова Пошта&quot;,&quot;handle&quot;:&quot;novaposhta&quot;},{&quot;title&quot;:&quot;ПЭК EasyWay&quot;,&quot;handle&quot;:&quot;easyway&quot;},{&quot;title&quot;:&quot;Деловые линии&quot;,&quot;handle&quot;:&quot;dellin&quot;},{&quot;title&quot;:&quot;SMART Умная доставка&quot;,&quot;handle&quot;:&quot;smartdostavka&quot;},{&quot;title&quot;:&quot;Достависта&quot;,&quot;handle&quot;:&quot;dostavista&quot;},{&quot;title&quot;:&quot;Dalli Service&quot;,&quot;handle&quot;:&quot;dalli-service&quot;},{&quot;title&quot;:&quot;ACCORD POST&quot;,&quot;handle&quot;:&quot;accordpost&quot;},{&quot;title&quot;:&quot;Е-КИТ&quot;,&quot;handle&quot;:&quot;e-kit&quot;},{&quot;title&quot;:&quot;NEPPOST&quot;,&quot;handle&quot;:&quot;neppost&quot;},{&quot;title&quot;:&quot;OnTime&quot;,&quot;handle&quot;:&quot;on-time&quot;},{&quot;title&quot;:&quot;Заббери&quot;,&quot;handle&quot;:&quot;zabberi&quot;},{&quot;title&quot;:&quot;MXP&quot;,&quot;handle&quot;:&quot;mxp&quot;},{&quot;title&quot;:&quot;РУ Доставка&quot;,&quot;handle&quot;:&quot;ru-dostavka&quot;},{&quot;title&quot;:&quot;Возовоз&quot;,&quot;handle&quot;:&quot;vozovoz&quot;},{&quot;title&quot;:&quot;City Express&quot;,&quot;handle&quot;:&quot;cityexpress&quot;},{&quot;title&quot;:&quot;DRH Logistic&quot;,&quot;handle&quot;:&quot;drhl&quot;},{&quot;title&quot;:&quot;Сберлогистика&quot;,&quot;handle&quot;:&quot;sblogistica&quot;},{&quot;title&quot;:&quot;Яндекс.Такси&quot;,&quot;handle&quot;:&quot;yandex-taxi&quot;},{&quot;title&quot;:&quot;AZ Express&quot;,&quot;handle&quot;:&quot;azexpress&quot;},{&quot;title&quot;:&quot;Dostavka-Club&quot;,&quot;handle&quot;:&quot;dostavka-club&quot;},{&quot;title&quot;:&quot;Яндекс Доставка&quot;,&quot;handle&quot;:&quot;yandex-delivery&quot;},{&quot;title&quot;:&quot;Ozon.Logistics&quot;,&quot;handle&quot;:&quot;ozon-logistics&quot;},{&quot;title&quot;:&quot;Чекбокс&quot;,&quot;handle&quot;:&quot;checkbox&quot;},{&quot;title&quot;:&quot;Dostavka.Guru&quot;,&quot;handle&quot;:&quot;dostavka-guru&quot;},{&quot;title&quot;:&quot;Axilog&quot;,&quot;handle&quot;:&quot;axilog&quot;},{&quot;title&quot;:&quot;EASY BULKY&quot;,&quot;handle&quot;:&quot;easybulki&quot;},{&quot;title&quot;:&quot;Л-Пост&quot;,&quot;handle&quot;:&quot;l-post&quot;},{&quot;title&quot;:&quot;MarlinZet&quot;,&quot;handle&quot;:&quot;marlinzet&quot;},{&quot;title&quot;:&quot;ИНТЕГРАЛ&quot;,&quot;handle&quot;:&quot;integraldos&quot;},{&quot;title&quot;:&quot;Курьерист&quot;,&quot;handle&quot;:&quot;courierist&quot;},{&quot;title&quot;:&quot;runCRM&quot;,&quot;handle&quot;:&quot;runcrm&quot;},{&quot;title&quot;:&quot;Подорожник&quot;,&quot;handle&quot;:&quot;podorojnik&quot;},{&quot;title&quot;:&quot;5Post&quot;,&quot;handle&quot;:&quot;fivepost&quot;},{&quot;title&quot;:&quot;RedExpress&quot;,&quot;handle&quot;:&quot;redexpress&quot;},{&quot;title&quot;:&quot;ExMail&quot;,&quot;handle&quot;:&quot;exmail&quot;},{&quot;title&quot;:&quot;OmniCDEK&quot;,&quot;handle&quot;:&quot;omnicdek&quot;},{&quot;title&quot;:&quot;e-COMLOG&quot;,&quot;handle&quot;:&quot;e-comlog&quot;},{&quot;title&quot;:&quot;КГТ&quot;,&quot;handle&quot;:&quot;kgt-dostavka&quot;},{&quot;title&quot;:&quot;TopDelivery&quot;,&quot;handle&quot;:&quot;topdelivery&quot;},{&quot;title&quot;:&quot;Халва&quot;,&quot;handle&quot;:&quot;halva&quot;},{&quot;title&quot;:&quot;BXB&quot;,&quot;handle&quot;:&quot;bxb&quot;}]"
+        id="delivery_variants">
+            <div id="deliveries-not-available">Для данного населенного пункта нет подходящих способов доставки</div>
+            <input name="shipping_address[no_delivery]" type="hidden" value="0" autocomplete="off" />
+            <input style="display: none" type="checkbox" value="1" name="shipping_address[no_delivery]" id="shipping_address_no_delivery" />
+            <div class="co-tabs-content co-tabs-content--active">
+                <label class="co-delivery_method co-input-wrapper co-toggable_field co-toggable_field--bordered co-delivery_method--for_individual co-delivery_method--for_juridical" for="order_delivery_variant_id_8141802"><span class="radio co-delivery_method-input co-toggable_field-input co-toggable_field-input--radio"><input class="radio_button js-input-field" data-delivery-id="8141802" id="order_delivery_variant_id_8141802" name="order[delivery_variant_id]" rel="#price_8141802" type="radio" value="8141802" /><span></span></span>
+                    <span
+                    class="co-toggable_field-information co-delivery_method-information"><span class="co-delivery_method-title co-toggable_field-title co-input-title" id="delivery_title_8141802">Самовывоз</span><span class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_description_8141802"><p>На пункте выдачи</p></span>
+                        <span
+                        class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_outlet_8141802"></span><span class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_interval_8141802"></span><span class="co-delivery_method-description co-toggable_field-description co-input-description"
+                            id="delivery_details_8141802"></span>
+                            <div id="delivery_error_8141802" style="color: red; display: none"></div><span></span></span><span class="co-delivery_method-price co-toggable_field-price co-price--current" id="price_8141802"></span><span class="co-delivery_method-price co-toggable_field-price co-price--current" id="price_range_8141802"
+                            style="display: none"></span></label>
+                <label class="co-delivery_method co-input-wrapper co-toggable_field co-toggable_field--bordered co-delivery_method--for_individual co-delivery_method--for_juridical" for="order_delivery_variant_id_8141803"><span class="radio co-delivery_method-input co-toggable_field-input co-toggable_field-input--radio"><input class="radio_button js-input-field" data-delivery-id="8141803" id="order_delivery_variant_id_8141803" name="order[delivery_variant_id]" rel="#price_8141803" type="radio" value="8141803" /><span></span></span>
+                    <span
+                    class="co-toggable_field-information co-delivery_method-information"><span class="co-delivery_method-title co-toggable_field-title co-input-title" id="delivery_title_8141803">Курьером</span><span class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_description_8141803"><p>Доставка курьером&nbsp;</p></span>
+                        <span
+                        class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_outlet_8141803"></span><span class="co-delivery_method-description co-toggable_field-description co-input-description" id="delivery_interval_8141803"></span><span class="co-delivery_method-description co-toggable_field-description co-input-description"
+                            id="delivery_details_8141803"></span>
+                            <div id="delivery_error_8141803" style="color: red; display: none"></div><span></span></span><span class="co-delivery_method-price co-toggable_field-price co-price--current" id="price_8141803"></span><span class="co-delivery_method-price co-toggable_field-price co-price--current" id="price_range_8141803"
+                            style="display: none"></span></label>
+                <div class="co-modal co-modal--outlet co-modal--fixed co-modal--hide">
+                    <div class="co-modal-wrapper">
+                        <div class="co-modal-header-container">
+                            <button class="co-modal-close js-modal-close co-icon co-modal-close-icon"></button>
+                            <div>
+                                <h3 class="co-modal-title co-title co-title--h2"></h3></div>
+                            <button class="co-modal-select-point co-icon"></button>
+                        </div>
+                        <div class="co-form--outlet co-modal-outlet_form co-modal-body js-modal-body"></div>
+                    </div>
+                </div>
+                <div class="co-overlay"></div>
+            </div>
+        </div>
+        <div class="co-delivery_adress co-checkout-block" id="shipping_address">
+            <div class="co-delivery_adress-form">
+                <div class="co-input  co-input--text co-input--zip  co-input--nested co-input--empty_nested">
+                    <label class="co-input-label" for="shipping_address_zip">Почтовый индекс</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_zip" name="shipping_address[zip]" value="" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+                <div class="co-input  co-input--text co-input--street  co-input--nested co-input--empty_nested">
+                    <label class="co-input-label" for="shipping_address_street">Улица</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_street" name="shipping_address[street]" value="" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+                <div class="co-input  co-input--text co-input--house  co-input--nested co-input--empty_nested">
+                    <label class="co-input-label" for="shipping_address_house">Дом</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_house" name="shipping_address[house]" value="" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+                <div class="co-input  co-input--text co-input--flat  co-input--nested co-input--empty_nested">
+                    <label class="co-input-label" for="shipping_address_flat">Квартира</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_flat" name="shipping_address[flat]" value="" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+            </div>
+        </div>
+        <div class="co-checkout-block"></div>
+        <div class="co-checkout-block">
+            <div class="co-input co-input--text co-input--nested" id="delivery-date-calendar-block">
+                <label class="co-input-label" for="order_delivery_date" id="delivery-date-calendar-label">Дата доставки</label>
+                <input class="co-input-field js-input-field" id="delivery-date-calendar" name="order[delivery_date]" readonly="true" />
+            </div>
+            <div class="co-input co-input--select co-input--nested co-input--empty_nested" id="delivery-time-intervals-block">
+                <label class="co-input-label" for="order_delivery_time_interval" id="delivery-time-intervals-label">Время доставки</label>
+                <div class="co-input-select">
+                    <select class="co-input-field js-input-field" id="delivery-time-intervals-select" name="order[delivery_time_interval]"></select>
+                </div>
+            </div>
+        </div>
+        <div class="co-customer co-checkout-block">
+            <h3 class="co-title co-title--h2">Получатель</h3>
+            <div class="co-checkout-block">
+                <div class="co-input co-input--required co-input--text co-input--contact_name  co-input--nested co-input--error co-input--empty_nested">
+                    <label class="co-input-label" for="shipping_address_contact_name">Ваше имя</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="text" id="shipping_address_contact_name" name="shipping_address[contact_name]" value="" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+                <div class="co-input co-input--required co-input--tel co-input--phone  co-input--nested ">
+                    <label class="co-input-label" for="shipping_address_phone">Контактный телефон</label>
+                    <input class="co-input-field js-input-field" autocomplete="off" type="tel" id="shipping_address_phone" name="shipping_address[phone]" value="+79060000000" />
+                    <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+                </div>
+            </div>
+        </div>
+        <div class="variants payment_variants co-payment_method-list co-checkout-block" data-payment-gateways="{&quot;6088532&quot;:{&quot;id&quot;:6088532,&quot;selected&quot;:false,&quot;position&quot;:1,&quot;title&quot;:&quot;Наличными или картой при получении&quot;,&quot;description&quot;:&quot;\u003cp\u003e\u003cspan\u003eОплата наличными или банковской картой при получении заказа\u003c/span\u003e\u003c/p\u003e&quot;,&quot;price&quot;:0.0,&quot;margin&quot;:&quot;0.0&quot;}}"
+        id="payment_gateways">
+            <div class="co-input co-input--required co-input--radio">
+                <h3 class="co-title co-title--h2 co-input-label">Способ оплаты</h3>
+                <label class="co-payment_method  co-input-wrapper co-toggable_field co-toggable_field--bordered juridical individual" for="order_payment_gateway_id_6088532"><span class="co-payment_method-input co-toggable_field-input  co-toggable_field-input--radio"><input class="radio_button js-input-field" data-payment-id="6088532" data-payment-position="1" id="order_payment_gateway_id_6088532" name="order[payment_gateway_id]" rel="#summ_6088532" type="radio" value="6088532" /><span></span></span>
+                    <span
+                    class="co-payment_method-information co-toggable_field-information"><span class="co-payment_method-title co-toggable_field-title co-input-title">Наличными или картой при получении</span><span class="co-payment_method-description co-toggable_field-description co-input-description" id="payment_description_6088532"><p><span>Оплата наличными или банковской картой при получении заказа</span></p>
+                        </span>
+                        </span><span class="co-toggable_field-price co-price--current" id="summ_6088532"></span></label>
+                <div id="payments-not-available">Для данного способа доставки нет подходящих способов оплаты</div>
+            </div>
+        </div>
+        <div id="checkout_result_fields"></div>
+        <div id="checkout_buyer_fields"></div>
+    </div>
+    <div class="co-checkout-block"></div>
+    <div class="consent_to_personal_data_checkbox co-checkout-block">
+        <div class="co-input co-input--required co-input--checkbox co-input--consent_to_personal_data   ">
+            <label class="co-toggable_field" for="client_consent_to_personal_data"><span class="co-toggable_field-input co-toggable_field-input--checkbox"><input class="" id="" type="hidden" name="client[consent_to_personal_data]" value="0" /><input class="co-input-checkbox js-input-field" id="client_consent_to_personal_data" type="checkbox" name="client[consent_to_personal_data]" value="1" checked="1" /><span></span><span></span></span>
+                <span
+                class="co-input-information co-toggable_field-information"><span class="co-input-title co-input-label co-toggable_field-title">Согласие на обработку персональных данных</span>
+                    <div class="co-input-description co-toggable_field-description">
+                        <p>Я ознакомлен и согласен с условиями <a href="/page/oferta" target="blank">оферты и политики конфиденциальности</a>.</p>
+                    </div>
+                    </span>
+            </label>
+            <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
+        </div>
+    </div>
+    <button class="co-button co-button--checkout js-button-checkout_submit" id="create_order" type="submit">Подтвердить заказ</button>
+</form>
+<div id="picker-container"></div>
+<div class="co-modal co-modal--login co-modal--fixed co-modal--hide">
+    <div class="co-modal-wrapper">
+        <button class="co-modal-close co-icon halfling-remove js-modal-close"></button>
+        <h3 class="co-modal-title co-title co-title--h2">Вход или регистрация</h3>
+        <div class="co-form--login co-modal-login_form js-modal-body" data-active-block=".co-form--login_by_email" data-code-resend-timeout="60" data-redirect-after-login-to="/new_order" data-use-mask="1">
+            <script src="https://www.google.com/recaptcha/api.js?hl=ru" async="async" defer="defer"></script>
+            <div class="co-form--login_by_phone co-form-hidden">
+                <div class="co-input co-input--required co-input--login">
+                    <label class="co-input-label">Телефон</label>
+                    <input class="co-input-field js-input-field co-input-phone" name="login" type="tel" />
+                    <div class="co-input-notice co-notice--danger"></div>
+                </div>
+                <div class="co-input co-input--required co-input--code">
+                    <label class="co-input-label">Код из SMS</label>
+                    <input autocomplete="off" class="co-input-field js-input-field" data-login-path="/client_account/session" name="code" type="number" />
+                    <div class="co-input-notice co-notice--danger"></div>
+                </div>
+                <div class="co-input"></div>
+                <div class="co-input co-input--text co-input--captcha">
+                    <div class="g-recaptcha" data-badge="inline" data-callback="onReCaptchaSuccess" data-sitekey="6LcZi0EmAAAAAPNov8uGBKSHCvBArp9oO15qAhXa" data-size="invisible" id="g-recaptcha-phone" style=""></div>
+                    <input name="recaptcha_type" type="hidden" value="invisible">
+                    <script>
+                        (() => {
+                          window.recaptchaBeforeSubmit = function(event) {
+                            let form = event.target;
+                        
+                            if (form.tagName !== 'FORM') {
+                              form = form.closest('form');
+                            }
+                        
+                            if (!form.querySelector('.co-input--captcha, .g-recaptcha')) return true;
+                        
+                            event.preventDefault();
+                        
+                            let recaptchaIndex = 0;
+                        
+                            window.onReCaptchaSuccess = (token) => {
+                              if (token) {
+                                form.submit();
+                                return true;
+                              }
+                        
+                              window.grecaptcha.reset(recaptchaIndex);
+                              return false;
+                            };
+                        
+                            const captchaBlocks = Array.from(document.querySelectorAll('.g-recaptcha-response'));
+                        
+                            if(!captchaBlocks && !captchaBlocks.length) return true;
+                        
+                            captchaBlocks.forEach((recaptchaWidget) => {
+                              const recaptchaElement = recaptchaWidget.closest('[data-size="invisible"]');
+                        
+                              if (!recaptchaElement || recaptchaElement.closest('form') !== form) return;
+                        
+                              // Достаём индекс капчи из идентификатора виджета
+                              const matches = recaptchaWidget.id.match(/\d+$/)
+                              recaptchaIndex = matches ? parseInt(matches[0]) : 0
+                        
+                              window.grecaptcha.execute(recaptchaIndex);
+                            });
+                          };
+                        
+                          const formSelector = ".co-form--login";
+                          if (!formSelector) return true;
+                        
+                          document.addEventListener('submit', function(e) {
+                            if (!e.target.matches(formSelector) || !window.recaptchaBeforeSubmit) return;
+                        
+                            window.recaptchaBeforeSubmit(e);
+                          }, false);
+                        })();
+                    </script>
+                    </input>
+                </div>
+                <button class="co-modal-button co-button js-modal-submit--login" data-send-code="/client_account/one_time_code" type="submit">Получить код</button>
+                <div class="co-countdown-block">Получить новый код можно через <span class="co-countdown-timer"></span></div>
+                <div class="co-link--login_by_email co-login-text"><a class="link" href="#">Вход или регистрация по email</a></div>
+            </div>
+            <div class="co-form--login_by_email">
+                <div class="co-input co-input--required co-input--login">
+                    <label class="co-input-label">Email</label>
+                    <input class="co-input-field js-input-field" name="login" type="email" />
+                    <div class="co-input-notice co-notice--danger"></div>
+                </div>
+                <div class="co-input co-input--required co-input--code">
+                    <label class="co-input-label">Код из Email</label>
+                    <input autocomplete="off" class="co-input-field js-input-field" data-login-path="/client_account/session" name="code" type="number" />
+                    <div class="co-input-notice co-notice--danger"></div>
+                </div>
+                <div class="co-input"></div>
+                <div class="co-input co-input--text co-input--captcha">
+                    <div class="g-recaptcha" data-badge="inline" data-callback="onReCaptchaSuccess" data-sitekey="6LcZi0EmAAAAAPNov8uGBKSHCvBArp9oO15qAhXa" data-size="invisible" id="g-recaptcha-email" style=""></div>
+                    <input name="recaptcha_type" type="hidden" value="invisible">
+                    <script>
+                        (() => {
+                          window.recaptchaBeforeSubmit = function(event) {
+                            let form = event.target;
+                        
+                            if (form.tagName !== 'FORM') {
+                              form = form.closest('form');
+                            }
+                        
+                            if (!form.querySelector('.co-input--captcha, .g-recaptcha')) return true;
+                        
+                            event.preventDefault();
+                        
+                            let recaptchaIndex = 0;
+                        
+                            window.onReCaptchaSuccess = (token) => {
+                              if (token) {
+                                form.submit();
+                                return true;
+                              }
+                        
+                              window.grecaptcha.reset(recaptchaIndex);
+                              return false;
+                            };
+                        
+                            const captchaBlocks = Array.from(document.querySelectorAll('.g-recaptcha-response'));
+                        
+                            if(!captchaBlocks && !captchaBlocks.length) return true;
+                        
+                            captchaBlocks.forEach((recaptchaWidget) => {
+                              const recaptchaElement = recaptchaWidget.closest('[data-size="invisible"]');
+                        
+                              if (!recaptchaElement || recaptchaElement.closest('form') !== form) return;
+                        
+                              // Достаём индекс капчи из идентификатора виджета
+                              const matches = recaptchaWidget.id.match(/\d+$/)
+                              recaptchaIndex = matches ? parseInt(matches[0]) : 0
+                        
+                              window.grecaptcha.execute(recaptchaIndex);
+                            });
+                          };
+                        
+                          const formSelector = ".co-form--login";
+                          if (!formSelector) return true;
+                        
+                          document.addEventListener('submit', function(e) {
+                            if (!e.target.matches(formSelector) || !window.recaptchaBeforeSubmit) return;
+                        
+                            window.recaptchaBeforeSubmit(e);
+                          }, false);
+                        })();
+                    </script>
+                    </input>
+                </div>
+                <button class="co-modal-button co-button js-modal-submit--login" data-send-code="/client_account/one_time_code" type="submit">Получить код</button>
+                <div class="co-countdown-block">Получить новый код можно через <span class="co-countdown-timer"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="co-overlay"></div>

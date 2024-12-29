@@ -1,0 +1,26 @@
+<div class="co-sidebar--menu">
+	<input class="co-menu-switcher" id="co-menu-toggle" type="checkbox" />
+	<label class="co-menu-toggle" data-title="Личный кабинет" for="co-menu-toggle"></label>
+	<div class="co-menu co-menu--personal co-checkout-block--padded">
+		<div class="co-menu-item co-menu-item--personal">
+			<a class="co-menu-link co-menu-link--personal co-link {% if account_active_item == "orders" %}co-link--active co-menu-link--active{% endif %}"
+				href="/templates/client_account/orders/">История заказов</a>
+		</div>
+		<div class="co-menu-item co-menu-item--personal">
+			<a class="co-menu-link co-menu-link--personal co-link {% if account_active_item == "addresses" %}co-link--active co-menu-link--active{% endif %}"
+				href="/templates/client_account/addresses/">Адрес доставки</a>
+		</div>
+		<div class="co-menu-item co-menu-item--personal">
+			<a class="co-menu-link co-menu-link--personal co-link {% if account_active_item == "discounts" %}co-link--active co-menu-link--active{% endif %}"
+				href="/templates/client_account/discounts/">Скидки и бонусы</a>
+		</div>
+		<div class="co-menu-item co-menu-item--personal">
+			<a class="co-menu-link co-menu-link--personal co-link {% if account_active_item == "contacts" %}co-link--active co-menu-link--active{% endif %}"
+				href="/templates/client_account/contacts/">Контактные данные</a>
+		</div>
+		<div class="co-menu-item co-menu-item--personal">
+			<a class="co-menu-link co-menu-link--personal co-link"
+				href="#">Выход</a>
+		</div>
+	</div>
+</div>

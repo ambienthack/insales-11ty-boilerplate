@@ -1,0 +1,40 @@
+{%- assign sizes_attr = sizes | default: "100vw" -%}
+{%- if sizes_abbr and sizes_abbr != '' -%}
+  {%- assign size_rules = sizes_abbr | split: ',' -%}
+  {%- assign sizes_attr = '' -%}
+  {%- assign sizes_delim = '' -%}
+  {%- for size_rule in size_rules -%}
+      {%- if forloop.last -%}
+          {%- assign sizes_attr = sizes_attr | append: sizes_delim | append: size_rule  -%}
+          {%- break -%}
+      {%- endif -%}
+      {%- assign abbr_n_size = size_rule | strip | split: ':' -%}
+      {%- capture min_width %}{% case abbr_n_size[0] %}{% when "xl" %}1399px{% when "l" %}1199px{% when "m" %}991px{% when "s" %}767px{% when "xs" %}639px{% when "xxs" %}479px{% endcase %}{% endcapture -%}
+      {%- assign sizes_attr = sizes_attr | append: sizes_delim | append: '(max-width:' | append: min_width | append: ') ' | append: abbr_n_size[1] -%}
+      {%- assign sizes_delim = ',' -%}
+  {%- endfor -%}
+  {%- assign size_rules = null -%}
+  {%- assign sizes_delim = null -%}
+  {%- assign size_rule = null -%}
+  {%- assign abbr_n_size = null -%}
+  {%- assign min_width = null -%}
+{%- endif -%}
+{%- assign img_sizes = resize | default: "320,1024,2048"  | split: ',' -%}
+{%- assign img_srcset = "" -%}
+{%- assign img_srcset_delim = "" -%}
+{%- assign img_class_attrs = "" -%}
+{%- if class -%}
+  {%- assign img_class_attrs = 'class="' | append: class | append: '"' -%}
+{%- endif -%}
+{%- for img_size in img_sizes -%}
+  {%- assign img_url = url | image_url: img_size, format: 'webp', resizing_type: 'fit_width' -%}
+  {%- assign img_srcset = img_srcset | append: img_srcset_delim | append: img_url | append: ' ' | append: img_size | append: 'w'   -%}
+  {%- assign img_srcset_delim = ", " -%}
+{%- endfor -%}
+<img srcset="{{ img_srcset }}" {{img_class_attrs}} src="{{ url.original_url  }}" alt="{{ alt | default: "" }}" sizes="{{ sizes_attr }}">
+{%- assign img_sizes = null -%}
+{%- assign img_srcset = null -%}
+{%- assign img_srcset_delim = null -%}
+{%- assign img_class_attrs = null -%}
+{%- assign img_size = null -%}
+{%- assign img_url = null -%}

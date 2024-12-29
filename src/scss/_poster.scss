@@ -1,0 +1,75 @@
+@use "sass:math";
+
+.poster {
+
+    --title-f-size: 2.2rem;
+    --img-h2w: #{ round( div(850px, 1512px) ) };
+
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-top: calc( var( --img-h2w ) * 100% );
+    padding-top: min( calc( var( --img-h2w ) * 100% ),  calc( 100vh - var( --header-h ) ));
+
+    &__image {
+        @include img-cover();
+        z-index: -1;
+    }
+
+    &__footer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        
+        box-sizing: border-box;
+        padding: 0 var( --content-pad-w );
+        padding-bottom: max( 6rem, px2vw( 'desk', 90px ) );
+    }
+
+    &__title {
+        font-size: var( --title-f-size );
+        font-weight: $fw-medium;
+        color: $c-back;
+        margin-bottom: 3rem;
+
+        max-width: 47rem;
+    }
+
+    &__btn {
+
+        --color: #{ $c-bw1 };
+        --color--hover: #{ $c-bw1 };
+        --bg-color--hover: #{ rgba( $c-bw6, 0.6 ) };
+
+        background: $c-bw6;
+        border: none;
+
+        backdrop-filter: blur(50px);
+        transition: backdrop-filter 300ms, background-color 300ms;
+
+    }
+
+    @media (max-width: max-width(m)) {
+        --title-f-size: 1.8rem; 
+    }
+
+    @media (max-width: max-width(s)) {
+        
+    }
+
+    @media (max-width: max-width(xs)) {
+        
+        --img-h2w: #{ round( div(716px, 390px) ) };    
+
+    }
+
+}

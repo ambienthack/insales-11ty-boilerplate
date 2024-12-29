@@ -1,0 +1,25 @@
+{% if template contains 'cart' %}
+{{ messages.cart }}
+{% elsif template contains 'search' %}
+{{ messages.search }}
+{% elsif template contains 'compare' %}
+{{ messages.compare }}
+{% elsif template contains 'favorite' %}
+{{ messages.favorites }}
+{% elsif template contains 'index' %}
+{{ page.title }}
+{% elsif template contains 'collection' %}
+{% if filter.title %}
+{{ filter.title }}
+{% else %}
+{{ collection.title  }}
+{% endif %}
+{% elsif template contains 'product' %}
+{{ product.title }}
+{% elsif template contains 'blog' %}
+{{ blog.title }}
+{% elsif template contains 'article' %}
+{{ article.title }}
+{% elsif template contains 'page' %}
+{{ page.title }}
+{% endif %}
